@@ -1,0 +1,5 @@
+[data-skin="matrix"] { text-shadow: 0 0 6px rgba(0,255,65,0.55); }
+      [data-skin="matrix"] [data-vlc-region="seek"],
+      [data-skin="matrix"] [data-vlc-region="control"] {
+        background-image: repeating-linear-gradient(0deg, rgba(0,255,65,0.04) 0 1px, transparent 1px 2px);
+      }

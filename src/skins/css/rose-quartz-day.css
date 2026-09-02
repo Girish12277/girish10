@@ -1,0 +1,8 @@
+[data-skin="rose-quartz-day"] [data-vlc-region="title"],
+      [data-skin="rose-quartz-day"] [data-vlc-region="menu"],
+      [data-skin="rose-quartz-day"] [data-vlc-region="control"],
+      [data-skin="rose-quartz-day"] [data-vlc-region="seek"],
+      [data-skin="rose-quartz-day"] [data-vlc-region="panel"],
+      [data-skin="rose-quartz-day"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(circle at 20% 20%, color-mix(in oklab, var(--vlc-accent) 16%, transparent), transparent 28%);
+      }

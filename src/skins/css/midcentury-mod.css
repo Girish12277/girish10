@@ -1,0 +1,8 @@
+[data-skin="midcentury-mod"] [data-vlc-region="title"],
+      [data-skin="midcentury-mod"] [data-vlc-region="menu"],
+      [data-skin="midcentury-mod"] [data-vlc-region="control"],
+      [data-skin="midcentury-mod"] [data-vlc-region="seek"],
+      [data-skin="midcentury-mod"] [data-vlc-region="panel"],
+      [data-skin="midcentury-mod"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(-45deg, color-mix(in oklab, var(--vlc-accent) 14%, transparent) 0 12px, transparent 12px 24px);
+      }

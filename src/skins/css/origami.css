@@ -1,0 +1,5 @@
+[data-skin="origami"] [data-vlc-region="control"],
+      [data-skin="origami"] [data-vlc-region="seek"],
+      [data-skin="origami"] [data-vlc-region="title"] {
+        box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 8px 24px -12px rgba(120,80,40,0.25);
+      }

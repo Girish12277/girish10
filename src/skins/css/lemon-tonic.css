@@ -1,0 +1,8 @@
+[data-skin="lemon-tonic"] [data-vlc-region="title"],
+      [data-skin="lemon-tonic"] [data-vlc-region="menu"],
+      [data-skin="lemon-tonic"] [data-vlc-region="control"],
+      [data-skin="lemon-tonic"] [data-vlc-region="seek"],
+      [data-skin="lemon-tonic"] [data-vlc-region="panel"],
+      [data-skin="lemon-tonic"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(color-mix(in oklab, var(--vlc-accent) 18%, transparent) 1px, transparent 1.5px); background-size: 14px 14px;
+      }

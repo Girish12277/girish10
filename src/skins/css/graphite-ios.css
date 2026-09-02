@@ -1,0 +1,9 @@
+[data-skin="graphite-ios"] [data-vlc-region="title"],
+      [data-skin="graphite-ios"] [data-vlc-region="menu"],
+      [data-skin="graphite-ios"] [data-vlc-region="control"],
+      [data-skin="graphite-ios"] [data-vlc-region="seek"],
+      [data-skin="graphite-ios"] [data-vlc-region="panel"],
+      [data-skin="graphite-ios"] [data-vlc-region="playlist"] {
+        backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
+      }
+      [data-skin="graphite-ios"] button, [data-skin="graphite-ios"] input, [data-skin="graphite-ios"] select { color-scheme: dark light; }

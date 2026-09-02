@@ -1,0 +1,4 @@
+[data-skin="speed-racer"] [data-vlc-region="title"] {
+        background-image: repeating-linear-gradient(45deg, #000 0 8px, #fff 8px 16px);
+        background-size: 100% 4px; background-repeat: no-repeat; background-position: bottom;
+      }

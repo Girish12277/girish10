@@ -1,0 +1,65 @@
+[data-skin="pw-glass-aurora"] { color-scheme: var(--vlc-color-scheme, dark); }
+  [data-skin="pw-glass-aurora"] [data-vlc-region] { overflow: visible; }
+  [data-skin="pw-glass-aurora"] [data-vlc-region="control"] button,
+  [data-skin="pw-glass-aurora"] [data-vlc-region="menu"] button,
+  [data-skin="pw-glass-aurora"] [data-vlc-region="title"] button {
+    transition: transform 120ms ease, background 160ms ease, box-shadow 220ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  [data-skin="pw-glass-aurora"] [data-vlc-region="control"] button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+  }
+  [data-skin="pw-glass-aurora"] [data-vlc-region="control"] [style*="vlc-font-mono"],
+  [data-skin="pw-glass-aurora"] .vlc-num { font-variant-numeric: tabular-nums; }
+  
+      /* Aurora background painted BEHIND the app so glass has something to blur */
+      [data-skin="pw-glass-aurora"] body,
+      [data-skin="pw-glass-aurora"] {
+        background:
+          radial-gradient(60% 50% at 15% 20%, rgba(125,211,252,0.55), transparent 60%),
+          radial-gradient(50% 45% at 85% 30%, rgba(167,139,250,0.55), transparent 60%),
+          radial-gradient(60% 50% at 50% 90%, rgba(236,72,153,0.42), transparent 60%),
+          #070b1d;
+        background-attachment: fixed;
+      }
+      [data-skin="pw-glass-aurora"] [data-vlc-region="title"],
+      [data-skin="pw-glass-aurora"] [data-vlc-region="menu"],
+      [data-skin="pw-glass-aurora"] [data-vlc-region="control"],
+      [data-skin="pw-glass-aurora"] [data-vlc-region="panel"],
+      [data-skin="pw-glass-aurora"] [data-vlc-region="playlist"] {
+        background: rgba(255,255,255,0.08) !important;
+        backdrop-filter: blur(28px) saturate(180%);
+        -webkit-backdrop-filter: blur(28px) saturate(180%);
+        border: 1px solid rgba(255,255,255,0.18);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 12px 40px rgba(4,7,20,0.55);
+      }
+      [data-skin="pw-glass-aurora"] [data-vlc-region="panel"],
+      [data-skin="pw-glass-aurora"] [data-vlc-region="playlist"] {
+        border-radius: var(--vlc-radius-lg) !important;
+      }
+      [data-skin="pw-glass-aurora"] [data-vlc-region="control"] button {
+        background: rgba(255,255,255,0.06) !important;
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: var(--vlc-control-radius) !important;
+      }
+      [data-skin="pw-glass-aurora"] [data-vlc-region="control"] button:hover {
+        background: rgba(255,255,255,0.16) !important;
+        transform: translateY(-1px);
+      }
+      [data-skin="pw-glass-aurora"] [data-vlc-region="control"] button[title^="Play"],
+      [data-skin="pw-glass-aurora"] [data-vlc-region="control"] button[title^="Pause"] {
+        background: linear-gradient(135deg,#7dd3fc,#a78bfa) !important;
+        color: #0a0f24 !important;
+        border: none;
+        box-shadow: 0 0 24px rgba(125,211,252,0.55), inset 0 1px 0 rgba(255,255,255,0.6);
+      }
+      [data-skin="pw-glass-aurora"] [data-vlc-track] { height: 4px !important; border-radius: 999px; background: rgba(255,255,255,0.14) !important; }
+      [data-skin="pw-glass-aurora"] [data-vlc-region="seek"]:hover [data-vlc-track] { height: 8px !important; }
+      [data-skin="pw-glass-aurora"] [data-vlc-played] { background: linear-gradient(90deg,#7dd3fc,#a78bfa,#f0abfc) !important; box-shadow: 0 0 14px rgba(167,139,250,0.7); }
+      [data-skin="pw-glass-aurora"] input, [data-skin="pw-glass-aurora"] textarea, [data-skin="pw-glass-aurora"] select {
+        background: rgba(255,255,255,0.08) !important;
+        border: 1px solid rgba(255,255,255,0.20) !important;
+        color: #f6f8ff !important;
+        border-radius: var(--vlc-radius-sm) !important;
+        backdrop-filter: blur(12px);
+      }

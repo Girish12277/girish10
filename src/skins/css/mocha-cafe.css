@@ -1,0 +1,5 @@
+[data-skin="mocha-cafe"] { font-weight: 500; }
+      [data-skin="mocha-cafe"] [data-vlc-region="control"],
+      [data-skin="mocha-cafe"] [data-vlc-region="seek"] {
+        border-top: 1px dashed rgba(80,50,30,0.3) !important;
+      }

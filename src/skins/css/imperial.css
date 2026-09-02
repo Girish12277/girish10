@@ -1,0 +1,5 @@
+[data-skin="imperial"] { letter-spacing: 2px; text-transform: uppercase; }
+      [data-skin="imperial"] [data-vlc-region="control"] {
+        border-top: 1px solid #d4af37 !important;
+        background-image: linear-gradient(180deg, rgba(212,175,55,0.06), transparent);
+      }

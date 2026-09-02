@@ -1,0 +1,8 @@
+[data-skin="jumbotron"] { letter-spacing: 2px; text-transform: uppercase; }
+      [data-skin="jumbotron"] [data-vlc-region="title"],
+      [data-skin="jumbotron"] [data-vlc-region="seek"],
+      [data-skin="jumbotron"] [data-vlc-region="control"] {
+        background-image: radial-gradient(rgba(255,200,0,0.1) 1px, transparent 1px);
+        background-size: 4px 4px;
+        text-shadow: 0 0 6px rgba(255,200,0,0.5);
+      }

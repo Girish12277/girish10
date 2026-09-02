@@ -1,0 +1,8 @@
+[data-skin="midnight-arcade"] [data-vlc-region="title"],
+      [data-skin="midnight-arcade"] [data-vlc-region="menu"],
+      [data-skin="midnight-arcade"] [data-vlc-region="control"],
+      [data-skin="midnight-arcade"] [data-vlc-region="seek"],
+      [data-skin="midnight-arcade"] [data-vlc-region="panel"],
+      [data-skin="midnight-arcade"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(rgba(0,0,0,.22) 1px, transparent 1.5px); background-size: 8px 8px;
+      }

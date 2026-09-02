@@ -1,0 +1,8 @@
+[data-skin="porcelain-mint"] [data-vlc-region="title"],
+      [data-skin="porcelain-mint"] [data-vlc-region="menu"],
+      [data-skin="porcelain-mint"] [data-vlc-region="control"],
+      [data-skin="porcelain-mint"] [data-vlc-region="seek"],
+      [data-skin="porcelain-mint"] [data-vlc-region="panel"],
+      [data-skin="porcelain-mint"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(color-mix(in oklab, var(--vlc-accent) 18%, transparent) 1px, transparent 1.5px); background-size: 14px 14px;
+      }

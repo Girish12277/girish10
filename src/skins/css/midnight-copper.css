@@ -1,0 +1,9 @@
+[data-skin="midnight-copper"] [data-vlc-region="title"],
+      [data-skin="midnight-copper"] [data-vlc-region="menu"],
+      [data-skin="midnight-copper"] [data-vlc-region="control"],
+      [data-skin="midnight-copper"] [data-vlc-region="seek"],
+      [data-skin="midnight-copper"] [data-vlc-region="panel"],
+      [data-skin="midnight-copper"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, rgba(0,0,0,.045) 1px 2px);
+      }
+      [data-skin="midnight-copper"] button, [data-skin="midnight-copper"] input, [data-skin="midnight-copper"] select { color-scheme: dark light; }

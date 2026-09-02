@@ -1,0 +1,9 @@
+[data-skin="typewriter-sepia"] [data-vlc-region="title"],
+      [data-skin="typewriter-sepia"] [data-vlc-region="menu"],
+      [data-skin="typewriter-sepia"] [data-vlc-region="control"],
+      [data-skin="typewriter-sepia"] [data-vlc-region="seek"],
+      [data-skin="typewriter-sepia"] [data-vlc-region="panel"],
+      [data-skin="typewriter-sepia"] [data-vlc-region="playlist"] {
+        background-image: linear-gradient(rgba(0,0,0,.035) 1px, transparent 1px); background-size: 100% 22px;
+      }
+      [data-skin="typewriter-sepia"] button, [data-skin="typewriter-sepia"] input, [data-skin="typewriter-sepia"] select { color-scheme: dark light; }

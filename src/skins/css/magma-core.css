@@ -1,0 +1,8 @@
+[data-skin="magma-core"] [data-vlc-region="title"],
+      [data-skin="magma-core"] [data-vlc-region="menu"],
+      [data-skin="magma-core"] [data-vlc-region="control"],
+      [data-skin="magma-core"] [data-vlc-region="seek"],
+      [data-skin="magma-core"] [data-vlc-region="panel"],
+      [data-skin="magma-core"] [data-vlc-region="playlist"] {
+        box-shadow: inset 0 0 42px color-mix(in oklab, var(--vlc-accent) 18%, transparent);
+      }

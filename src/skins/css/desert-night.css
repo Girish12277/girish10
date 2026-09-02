@@ -1,0 +1,9 @@
+[data-skin="desert-night"] [data-vlc-region="title"],
+      [data-skin="desert-night"] [data-vlc-region="menu"],
+      [data-skin="desert-night"] [data-vlc-region="control"],
+      [data-skin="desert-night"] [data-vlc-region="seek"],
+      [data-skin="desert-night"] [data-vlc-region="panel"],
+      [data-skin="desert-night"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px); background-size: 5px 5px;
+      }
+      [data-skin="desert-night"] button, [data-skin="desert-night"] input, [data-skin="desert-night"] select { color-scheme: dark light; }

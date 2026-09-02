@@ -1,0 +1,75 @@
+[data-skin="pw-blueprint"] { color-scheme: var(--vlc-color-scheme, dark); }
+  [data-skin="pw-blueprint"] [data-vlc-region] { overflow: visible; }
+  [data-skin="pw-blueprint"] [data-vlc-region="control"] button,
+  [data-skin="pw-blueprint"] [data-vlc-region="menu"] button,
+  [data-skin="pw-blueprint"] [data-vlc-region="title"] button {
+    transition: transform 120ms ease, background 160ms ease, box-shadow 220ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  [data-skin="pw-blueprint"] [data-vlc-region="control"] button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+  }
+  [data-skin="pw-blueprint"] [data-vlc-region="control"] [style*="vlc-font-mono"],
+  [data-skin="pw-blueprint"] .vlc-num { font-variant-numeric: tabular-nums; }
+  
+      [data-skin="pw-blueprint"] {
+        background:
+          repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 40px),
+          repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 40px),
+          repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 8px),
+          repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 8px),
+          #0d3b66 !important;
+        background-attachment: fixed;
+        font-size: 12.5px;
+        letter-spacing: 0.02em;
+      }
+      [data-skin="pw-blueprint"] [data-vlc-region="title"],
+      [data-skin="pw-blueprint"] [data-vlc-region="menu"],
+      [data-skin="pw-blueprint"] [data-vlc-region="control"] {
+        background: transparent !important;
+        border: 1px solid rgba(255,255,255,0.30) !important;
+        color: #f0f8ff;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 11px;
+      }
+      [data-skin="pw-blueprint"] [data-vlc-region="control"] button {
+        background: transparent !important;
+        border: 1px solid rgba(255,255,255,0.40) !important;
+        border-radius: 0 !important;
+        color: #f0f8ff !important;
+      }
+      [data-skin="pw-blueprint"] [data-vlc-region="control"] button:hover {
+        background: rgba(253,224,71,0.14) !important;
+        border-color: #fde047 !important;
+        color: #fde047 !important;
+      }
+      [data-skin="pw-blueprint"] [data-vlc-region="control"] button[title^="Play"],
+      [data-skin="pw-blueprint"] [data-vlc-region="control"] button[title^="Pause"] {
+        background: #fde047 !important;
+        color: #0d3b66 !important;
+        border: 1px solid #fde047 !important;
+        box-shadow: 0 0 0 3px rgba(253,224,71,0.20);
+      }
+      [data-skin="pw-blueprint"] [data-vlc-region="panel"],
+      [data-skin="pw-blueprint"] [data-vlc-region="playlist"] {
+        background: rgba(13,59,102,0.94) !important;
+        border: 1px solid rgba(255,255,255,0.40) !important;
+        border-radius: 0 !important;
+        color: #f0f8ff;
+        box-shadow: 0 12px 32px rgba(0,0,0,0.5) !important;
+      }
+      [data-skin="pw-blueprint"] [data-vlc-track] {
+        height: 2px !important;
+        background: rgba(255,255,255,0.30) !important;
+        border-radius: 0 !important;
+        position: relative;
+      }
+      [data-skin="pw-blueprint"] [data-vlc-played] { background: #fde047 !important; border-radius: 0 !important; box-shadow: 0 0 6px rgba(253,224,71,0.6); }
+      [data-skin="pw-blueprint"] input, [data-skin="pw-blueprint"] textarea, [data-skin="pw-blueprint"] select {
+        background: transparent !important;
+        border: 1px solid rgba(255,255,255,0.40) !important;
+        border-radius: 0 !important;
+        color: #f0f8ff !important;
+        font-family: "IBM Plex Mono", monospace;
+      }

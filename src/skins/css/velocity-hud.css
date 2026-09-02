@@ -1,0 +1,16 @@
+[data-skin="velocity-hud"] {
+        font-family: var(--vlc-font-ui);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color-scheme: dark;
+      }
+      [data-skin="velocity-hud"] [data-vlc-region="title"],
+      [data-skin="velocity-hud"] [data-vlc-region="menu"] {
+        background: linear-gradient(180deg, #062231 0%, #041823 100%);
+        border-bottom: 1px solid var(--vlc-border-subtle);
+      }
+      [data-skin="velocity-hud"] .vlc-num {
+        font-family: var(--vlc-font-mono);
+        color: var(--vlc-accent);
+        text-shadow: 0 0 8px rgba(255,138,61,0.45);
+      }

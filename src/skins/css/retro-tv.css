@@ -1,0 +1,9 @@
+[data-skin="retro-tv"] [data-vlc-region="title"],
+      [data-skin="retro-tv"] [data-vlc-region="menu"],
+      [data-skin="retro-tv"] [data-vlc-region="control"],
+      [data-skin="retro-tv"] [data-vlc-region="seek"],
+      [data-skin="retro-tv"] [data-vlc-region="panel"],
+      [data-skin="retro-tv"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 4px);
+      }
+      [data-skin="retro-tv"] button, [data-skin="retro-tv"] input, [data-skin="retro-tv"] select { color-scheme: dark light; }

@@ -1,0 +1,800 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/* ------------------------------------------------------------------
+ * Tailwind theme bridge — exposes the VLC token system as utilities.
+ * ------------------------------------------------------------------ */
+@theme inline {
+  /* Surfaces */
+  --color-background: var(--vlc-bg-base);
+  --color-foreground: var(--vlc-text-primary);
+  --color-surface: var(--vlc-bg-surface);
+  --color-surface-raised: var(--vlc-bg-raised);
+  --color-surface-elevated: var(--vlc-bg-elevated);
+  --color-surface-overlay: var(--vlc-bg-overlay);
+  --color-surface-sunken: var(--vlc-bg-sunken);
+
+  /* Borders */
+  --color-border: var(--vlc-border-normal);
+  --color-border-subtle: var(--vlc-border-subtle);
+  --color-border-strong: var(--vlc-border-strong);
+  --color-border-focus: var(--vlc-border-focus);
+
+  /* Text */
+  --color-text-primary: var(--vlc-text-primary);
+  --color-text-secondary: var(--vlc-text-secondary);
+  --color-text-tertiary: var(--vlc-text-ghost);
+  --color-text-disabled: var(--vlc-text-disabled);
+  --color-text-inverse: var(--vlc-text-inverse);
+
+  /* Accent */
+  --color-accent: var(--vlc-accent);
+  --color-accent-hover: var(--vlc-accent-hover);
+  --color-accent-active: var(--vlc-accent-active);
+  --color-accent-soft: var(--vlc-accent-dim);
+  --color-accent-foreground: var(--vlc-text-inverse);
+
+  /* State */
+  --color-success: var(--vlc-success);
+  --color-warning: var(--vlc-warning);
+  --color-danger: var(--vlc-danger);
+  --color-info: var(--vlc-info);
+
+  /* shadcn compatibility (some existing components rely on these) */
+  --color-muted: var(--vlc-bg-surface);
+  --color-muted-foreground: var(--vlc-text-secondary);
+  --color-primary: var(--vlc-accent);
+  --color-primary-foreground: var(--vlc-text-inverse);
+  --color-input: var(--vlc-border-normal);
+  --color-ring: var(--vlc-border-focus);
+
+  /* Type */
+  --font-ui: var(--vlc-font-ui);
+  --font-mono: var(--vlc-font-mono);
+  --font-display: var(--vlc-font-display);
+
+  /* Radius (Tailwind exposes as rounded-*) */
+  --radius-xs: var(--vlc-radius-xs);
+  --radius-sm: var(--vlc-radius-sm);
+  --radius-md: var(--vlc-radius-md);
+  --radius-lg: var(--vlc-radius-lg);
+  --radius-xl: var(--vlc-radius-xl);
+  --radius-2xl: var(--vlc-radius-2xl);
+
+  /* Shadows */
+  --shadow-1: var(--vlc-shadow-1);
+  --shadow-2: var(--vlc-shadow-2);
+  --shadow-3: var(--vlc-shadow-3);
+  --shadow-4: var(--vlc-shadow-4);
+  --shadow-5: var(--vlc-shadow-5);
+}
+
+/* ------------------------------------------------------------------
+ * Core token scale — single source of truth.
+ * Existing tokens are preserved for backward compatibility; new
+ * tokens layer on top. Density-aware values respond to
+ * [data-density] on <html>.
+ * ------------------------------------------------------------------ */
+:root {
+  /* Surfaces (5-step) */
+  --vlc-bg-base: #131313;
+  --vlc-bg-sunken: #0c0c0c;
+  --vlc-bg-surface: #1c1c1c;
+  --vlc-bg-raised: #232323;
+  --vlc-bg-elevated: #2c2c2c;
+  --vlc-bg-overlay: rgba(0, 0, 0, 0.55);
+  --vlc-scrim: rgba(0, 0, 0, 0.72);
+
+  /* Borders */
+  --vlc-border-subtle: rgba(255, 255, 255, 0.06);
+  --vlc-border-normal: rgba(255, 255, 255, 0.10);
+  --vlc-border-strong: rgba(255, 255, 255, 0.18);
+  --vlc-border-focus: color-mix(in oklab, var(--vlc-accent) 85%, white 15%);
+
+  /* Accent (VLC orange ramp) */
+  --vlc-accent: #ff8800;
+  --vlc-accent-hover: #ffa033;
+  --vlc-accent-active: #e07300;
+  --vlc-accent-dim: color-mix(in oklab, var(--vlc-accent) 18%, transparent);
+  --vlc-accent-soft: color-mix(in oklab, var(--vlc-accent) 12%, transparent);
+  --vlc-accent-text: #ffa033;
+
+  /* Text */
+  --vlc-text-primary: #f3f3f3;
+  --vlc-text-secondary: rgba(243, 243, 243, 0.66);
+  --vlc-text-ghost: rgba(243, 243, 243, 0.40);
+  --vlc-text-disabled: rgba(243, 243, 243, 0.22);
+  --vlc-text-inverse: #0a0a0a;
+
+  /* State */
+  --vlc-success: #2bd576;
+  --vlc-warning: #ffb020;
+  --vlc-danger: #ff4d4f;
+  --vlc-info: #4dabff;
+
+  /* Seek */
+  --vlc-seek-played: var(--vlc-accent);
+  --vlc-seek-buffered: rgba(255, 255, 255, 0.28);
+  --vlc-seek-track: rgba(255, 255, 255, 0.10);
+  --vlc-seek-thumb: #ffffff;
+  --vlc-chapter-marker: rgba(255, 255, 255, 0.45);
+
+  /* Volume */
+  --vlc-volume-fill: #ffffff;
+  --vlc-volume-boost: #ff4444;
+
+  /* Controls */
+  --vlc-control-bg: transparent;
+  --vlc-control-hover: rgba(255, 255, 255, 0.07);
+  --vlc-control-active: rgba(255, 255, 255, 0.12);
+  --vlc-control-radius: 8px;
+
+  /* Chrome gradient (overlay scrims) */
+  --vlc-gradient: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.55) 50%, transparent 100%);
+  --vlc-gradient-height: 140px;
+
+  /* Type */
+  --vlc-font-ui: "Inter Tight", "Inter", system-ui, -apple-system, sans-serif;
+  --vlc-font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+  --vlc-font-display: "Inter Tight", "Inter", system-ui, sans-serif;
+
+  /* Density-aware type scale (default = cozy) */
+  --vlc-text-2xs: 10px;
+  --vlc-text-xs: 11px;
+  --vlc-text-sm: 12px;
+  --vlc-text-md: 13px;
+  --vlc-text-lg: 15px;
+  --vlc-text-xl: 18px;
+  --vlc-text-2xl: 22px;
+
+  /* Legacy aliases (kept for back-compat) */
+  --vlc-font-size-sm: var(--vlc-text-sm);
+  --vlc-font-size-md: var(--vlc-text-md);
+  --vlc-font-size-lg: var(--vlc-text-lg);
+
+  /* Radii */
+  --vlc-radius-xs: 3px;
+  --vlc-radius-sm: 5px;
+  --vlc-radius-md: 8px;
+  --vlc-radius-lg: 12px;
+  --vlc-radius-xl: 16px;
+  --vlc-radius-2xl: 22px;
+  --vlc-radius-full: 9999px;
+
+  /* Elevation — layered shadows for real depth */
+  --vlc-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --vlc-shadow-2: 0 2px 6px rgba(0, 0, 0, 0.40), 0 1px 2px rgba(0, 0, 0, 0.30);
+  --vlc-shadow-3: 0 6px 18px rgba(0, 0, 0, 0.50), 0 2px 4px rgba(0, 0, 0, 0.30);
+  --vlc-shadow-4: 0 14px 40px rgba(0, 0, 0, 0.55), 0 4px 10px rgba(0, 0, 0, 0.35);
+  --vlc-shadow-5: 0 28px 80px rgba(0, 0, 0, 0.65), 0 10px 24px rgba(0, 0, 0, 0.45);
+  --vlc-glow-accent: 0 0 0 1px color-mix(in oklab, var(--vlc-accent) 60%, transparent),
+                     0 8px 28px color-mix(in oklab, var(--vlc-accent) 35%, transparent);
+
+  /* Legacy aliases */
+  --vlc-shadow-popup: var(--vlc-shadow-4);
+  --vlc-shadow-tooltip: var(--vlc-shadow-2);
+
+  /* Blur */
+  --vlc-blur-chrome: 14px;
+  --vlc-blur-panel: 22px;
+  --vlc-blur-scrim: 6px;
+
+  /* Spacing (4-pt grid) */
+  --vlc-space-0: 0;
+  --vlc-space-1: 4px;
+  --vlc-space-2: 8px;
+  --vlc-space-3: 12px;
+  --vlc-space-4: 16px;
+  --vlc-space-5: 24px;
+  --vlc-space-6: 32px;
+  --vlc-space-7: 48px;
+
+  /* Motion scale — multiplies every base duration. Set via store.
+     0 = motion off, 0.5 = calm, 1 = standard, 1.4 = snappy. */
+  --vlc-motion-scale: 1;
+
+  /* Motion */
+  --vlc-dur-fast:  calc(120ms * var(--vlc-motion-scale));
+  --vlc-dur-base:  calc(200ms * var(--vlc-motion-scale));
+  --vlc-dur-slow:  calc(320ms * var(--vlc-motion-scale));
+  --vlc-dur-xslow: calc(520ms * var(--vlc-motion-scale));
+  --vlc-ease-standard: cubic-bezier(0.2, 0.0, 0.0, 1);
+  --vlc-ease-emphasized: cubic-bezier(0.2, 0.0, 0, 1.2);
+  --vlc-ease-decel: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --vlc-ease-accel: cubic-bezier(0.3, 0, 1, 1);
+
+  /* Legacy transition aliases */
+  --vlc-transition-fast: var(--vlc-dur-fast) var(--vlc-ease-standard);
+  --vlc-transition-mid: var(--vlc-dur-base) var(--vlc-ease-standard);
+  --vlc-transition-slow: var(--vlc-dur-slow) var(--vlc-ease-standard);
+
+  /* Focus ring */
+  --vlc-focus-ring: 0 0 0 2px var(--vlc-bg-base), 0 0 0 4px var(--vlc-border-focus);
+}
+
+/* Density modes — applied via [data-density="compact|cozy|comfortable"] */
+:root[data-density="compact"] {
+  --vlc-text-sm: 11px;
+  --vlc-text-md: 12px;
+  --vlc-text-lg: 14px;
+  --vlc-space-3: 8px;
+  --vlc-space-4: 12px;
+  --vlc-control-radius: 6px;
+}
+:root[data-density="comfortable"] {
+  --vlc-text-sm: 13px;
+  --vlc-text-md: 14px;
+  --vlc-text-lg: 16px;
+  --vlc-space-3: 14px;
+  --vlc-space-4: 20px;
+  --vlc-control-radius: 10px;
+}
+
+/* High-contrast mode */
+:root[data-contrast="high"] {
+  --vlc-text-secondary: rgba(243, 243, 243, 0.88);
+  --vlc-text-ghost: rgba(243, 243, 243, 0.66);
+  --vlc-border-subtle: rgba(255, 255, 255, 0.18);
+  --vlc-border-normal: rgba(255, 255, 255, 0.32);
+  --vlc-border-strong: rgba(255, 255, 255, 0.48);
+}
+@media (prefers-contrast: more) {
+  :root {
+    --vlc-text-secondary: rgba(243, 243, 243, 0.88);
+    --vlc-text-ghost: rgba(243, 243, 243, 0.66);
+    --vlc-border-subtle: rgba(255, 255, 255, 0.18);
+    --vlc-border-normal: rgba(255, 255, 255, 0.32);
+    --vlc-border-strong: rgba(255, 255, 255, 0.48);
+  }
+}
+
+/* Reduced motion — collapse all transitions/animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Forced-colors mode (Windows high contrast) */
+@media (forced-colors: active) {
+  :root {
+    --vlc-border-normal: CanvasText;
+    --vlc-border-strong: CanvasText;
+    --vlc-accent: Highlight;
+    --vlc-text-primary: CanvasText;
+  }
+  button, [role="button"] { forced-color-adjust: none; }
+}
+
+/* ------------------------------------------------------------------
+ * Base reset
+ * ------------------------------------------------------------------ */
+* { box-sizing: border-box; }
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: var(--vlc-font-ui);
+  color: var(--vlc-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv11", "ss01";
+  /* Prevent layout shift when Inter Tight loads and replaces system-ui */
+  font-size-adjust: 0.504;
+}
+button { font-family: inherit; color: inherit; }
+
+/* Focus-visible: hand-tuned accent ring, no naked browser outlines */
+:where(button, [role="button"], a, input, select, textarea, [tabindex]):focus { outline: none; }
+/* Buttons / links / generic focusables get the accent halo */
+:where(button, [role="button"], a, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: var(--vlc-focus-ring);
+  border-radius: var(--vlc-control-radius);
+}
+/* Fields get a field treatment: border + soft glow, inherit their own radius */
+:where(input, select, textarea):focus-visible {
+  outline: none;
+  border-color: var(--vlc-border-focus);
+  box-shadow: 0 0 0 2px var(--vlc-accent-dim);
+  /* deliberately no border-radius override — the field keeps its own */
+}
+/* Opt-out: elements that render their own focus indicator (command palette, seekbar) */
+:where([data-vlc-focus="none"]):focus-visible,
+:where([data-vlc-focus="none"] input):focus-visible {
+  box-shadow: none;
+  border-color: inherit;
+}
+/* Command palette input — bare, no borders, no rings, ever */
+[data-cmd-palette] input,
+[data-cmd-palette] input:focus,
+[data-cmd-palette] input:focus-visible {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Selection */
+::selection { background: var(--vlc-accent-dim); color: var(--vlc-text-primary); }
+
+/* ─── App Feel — makes the shell behave like a native desktop app ─── */
+html[data-feel-select="off"],
+html[data-feel-select="off"] body {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+html[data-feel-select="off"] input,
+html[data-feel-select="off"] textarea,
+html[data-feel-select="off"] [contenteditable="true"],
+html[data-feel-select="off"] [data-app-allow-select="1"],
+html[data-feel-select="off"] [data-app-allow-select="1"] * {
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+html[data-feel-overscroll="off"],
+html[data-feel-overscroll="off"] body {
+  overscroll-behavior: none;
+  overflow: hidden;
+}
+html[data-feel-touch-zoom="off"],
+html[data-feel-touch-zoom="off"] body {
+  touch-action: manipulation;
+}
+html[data-feel-callout="off"] * {
+  -webkit-touch-callout: none;
+}
+html[data-feel-standalone="on"] body {
+  /* Hide the residual scroll gutters when running as an installed PWA. */
+  scrollbar-gutter: auto;
+}
+
+/* Mono numerics for time/codec readouts */
+.vlc-num { font-family: var(--vlc-font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+/* ------------------------------------------------------------------
+ * Custom utilities
+ * ------------------------------------------------------------------ */
+@utility glass-chrome {
+  background: color-mix(in oklab, var(--vlc-bg-base) 72%, transparent);
+  backdrop-filter: blur(var(--vlc-blur-chrome)) saturate(140%);
+  border-color: var(--vlc-border-subtle);
+}
+@utility glass-panel {
+  background: color-mix(in oklab, var(--vlc-bg-elevated) 82%, transparent);
+  backdrop-filter: blur(var(--vlc-blur-panel)) saturate(150%);
+}
+@utility scrim-top {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+}
+@utility scrim-bottom {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+}
+@utility hairline-top {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+@utility hairline-bottom {
+  box-shadow: inset 0 -1px 0 0 var(--vlc-border-subtle);
+}
+@utility press {
+  transition: transform var(--vlc-dur-fast) var(--vlc-ease-standard);
+}
+@utility press-active {
+  transform: scale(0.97);
+}
+
+/* Slider base */
+input[type="range"].vlc-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  height: 14px;
+}
+input[type="range"].vlc-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--vlc-border-strong);
+  border-radius: var(--vlc-radius-full);
+}
+input[type="range"].vlc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px; height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  margin-top: -5px;
+  border: none;
+}
+input[type="range"].vlc-slider::-moz-range-track {
+  height: 4px;
+  background: var(--vlc-border-strong);
+  border-radius: var(--vlc-radius-full);
+}
+input[type="range"].vlc-slider::-moz-range-thumb {
+  width: 14px; height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  border: none;
+}
+
+/* Vertical slider for EQ */
+input[type="range"].vlc-eq {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  -webkit-appearance: slider-vertical;
+  width: 16px;
+  height: 120px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--vlc-border-strong); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--vlc-accent); }
+
+@keyframes vlc-eq-bar {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+.vlc-eq-bar { transform-origin: bottom; animation: vlc-eq-bar 0.9s ease-in-out infinite; }
+
+@keyframes vlc-fade-out {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes vlc-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.vlc-rise { animation: vlc-rise var(--vlc-dur-base) var(--vlc-ease-decel) both; }
+
+@keyframes vlc-seek-shimmer {
+  0%   { background-position: -40% 0; }
+  100% { background-position: 140% 0; }
+}
+
+/* Phase 5 — global press-down micro-interaction for chrome buttons */
+[data-vlc-region] button:not(:disabled),
+[data-vlc-region] [role="button"]:not([aria-disabled="true"]) {
+  transition:
+    transform var(--vlc-dur-fast) var(--vlc-ease-standard),
+    background var(--vlc-dur-fast) var(--vlc-ease-standard),
+    color var(--vlc-dur-fast) var(--vlc-ease-standard);
+}
+[data-vlc-region] button:not(:disabled):active,
+[data-vlc-region] [role="button"]:not([aria-disabled="true"]):active {
+  transform: scale(0.97);
+}
+
+/* Cursor affordances per region */
+[data-vlc-region="seek"] { cursor: ew-resize; }
+[data-vlc-region="title"] { cursor: default; }
+[data-vlc-region="title"] [data-vlc-drag-handle] { cursor: grab; }
+[data-vlc-region="title"] [data-vlc-drag-handle]:active { cursor: grabbing; }
+
+/* ------------------------------------------------------------------
+ * Light theme — opt-in via [data-theme="light"] on <html>
+ * Hand-tuned for parity with the dark surface ramp.
+ * ------------------------------------------------------------------ */
+:root[data-theme="light"] {
+  --vlc-bg-base: #f6f6f7;
+  --vlc-bg-sunken: #ececee;
+  --vlc-bg-surface: #ffffff;
+  --vlc-bg-raised: #fafafb;
+  --vlc-bg-elevated: #ffffff;
+  --vlc-bg-overlay: rgba(15, 15, 18, 0.45);
+  --vlc-scrim: rgba(15, 15, 18, 0.55);
+
+  --vlc-border-subtle: rgba(15, 15, 18, 0.07);
+  --vlc-border-normal: rgba(15, 15, 18, 0.13);
+  --vlc-border-strong: rgba(15, 15, 18, 0.22);
+
+  --vlc-text-primary: #15161a;
+  --vlc-text-secondary: rgba(21, 22, 26, 0.66);
+  --vlc-text-ghost: rgba(21, 22, 26, 0.44);
+  --vlc-text-disabled: rgba(21, 22, 26, 0.26);
+  --vlc-text-inverse: #ffffff;
+
+  --vlc-seek-track: rgba(15, 15, 18, 0.10);
+  --vlc-seek-buffered: rgba(15, 15, 18, 0.22);
+  --vlc-seek-thumb: #15161a;
+  --vlc-volume-fill: #15161a;
+
+  --vlc-control-hover: rgba(15, 15, 18, 0.06);
+  --vlc-control-active: rgba(15, 15, 18, 0.10);
+
+  --vlc-shadow-1: 0 1px 2px rgba(15, 15, 18, 0.08);
+  --vlc-shadow-2: 0 2px 6px rgba(15, 15, 18, 0.10), 0 1px 2px rgba(15, 15, 18, 0.06);
+  --vlc-shadow-3: 0 6px 18px rgba(15, 15, 18, 0.12), 0 2px 4px rgba(15, 15, 18, 0.06);
+  --vlc-shadow-4: 0 14px 40px rgba(15, 15, 18, 0.14), 0 4px 10px rgba(15, 15, 18, 0.08);
+  --vlc-shadow-5: 0 28px 80px rgba(15, 15, 18, 0.18), 0 10px 24px rgba(15, 15, 18, 0.10);
+}
+
+@keyframes vlc-eqbar {
+  from { transform: scaleY(0.3); }
+  to { transform: scaleY(1); }
+}
+
+/* ---------------------------------------------------------------------------
+ * Core-chrome motion (CSS only).
+ *
+ * OSDDisplay and DockRail are mounted on every session, so they must not pull
+ * the animation runtime into the initial bundle. These keyframes reproduce the
+ * previous spring feel with GPU-only transforms.
+ * ------------------------------------------------------------------------- */
+@keyframes vlc-osd-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+.vlc-osd-pill {
+  animation: vlc-osd-in 220ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+}
+
+/* Phase 5 — auto-dismiss progress countdown bar inside OSD pills */
+@keyframes vlc-osd-shrink {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+.vlc-osd-progress {
+  animation: vlc-osd-shrink linear both;
+}
+
+@keyframes vlc-dock-in {
+  from { opacity: 0; transform: translate(24px, -50%); }
+  to   { opacity: 1; transform: translate(0, -50%); }
+}
+
+.vlc-dock-rail {
+  animation: vlc-dock-in 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.vlc-dock-btn {
+  transition:
+    color var(--vlc-dur-fast, 120ms) var(--vlc-ease-standard, ease),
+    transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.vlc-dock-btn:hover { transform: scale(1.12); }
+.vlc-dock-btn:active { transform: scale(0.92); }
+.vlc-dock-btn[aria-pressed="false"]:hover {
+  background: color-mix(in oklab, var(--vlc-text-primary) 8%, transparent);
+}
+
+.vlc-dock-blob {
+  animation: vlc-fade-in 160ms ease both;
+}
+
+@keyframes vlc-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ------------------------------------------------------------------
+ * Phase 2 — Empty state premium animations
+ * ------------------------------------------------------------------ */
+@keyframes vlc-orb-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(-30px, 20px) scale(1.05); }
+  66%      { transform: translate(20px, -15px) scale(0.97); }
+}
+@keyframes vlc-orb-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%      { transform: translate(25px, -20px) scale(1.08); }
+  70%      { transform: translate(-15px, 25px) scale(0.95); }
+}
+.vlc-empty-orb-1 { animation: vlc-orb-drift-1 12s ease-in-out infinite; }
+.vlc-empty-orb-2 { animation: vlc-orb-drift-2 15s ease-in-out infinite; }
+
+.vlc-empty-card {
+  animation: vlc-rise var(--vlc-dur-slow) var(--vlc-ease-decel) both;
+}
+.vlc-empty-card:hover {
+  background: color-mix(in oklab, var(--vlc-bg-elevated) 95%, transparent) !important;
+  border-color: var(--vlc-border-normal) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--vlc-shadow-2);
+}
+.vlc-empty-card:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.vlc-empty-section {
+  animation: vlc-rise var(--vlc-dur-slow) var(--vlc-ease-decel) both;
+  animation-delay: 200ms;
+}
+
+/* ------------------------------------------------------------------
+ * Phase 3 — SeekBar animations
+ * ------------------------------------------------------------------ */
+.vlc-bookmark-marker {
+  transition: transform var(--vlc-dur-fast) var(--vlc-ease-standard), box-shadow var(--vlc-dur-fast) var(--vlc-ease-standard) !important;
+}
+.vlc-bookmark-marker:hover {
+  transform: translateX(-50%) scale(1.5) !important;
+  box-shadow: 0 0 12px var(--vlc-warning) !important;
+}
+
+@keyframes vlc-tooltip-slide-up {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px) scale(0.95); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+.vlc-tooltip-enter {
+  animation: vlc-tooltip-slide-up var(--vlc-dur-base) var(--vlc-ease-decel) both;
+}
+
+/* ------------------------------------------------------------------
+ * Phase 9 — Loading States
+ * ------------------------------------------------------------------ */
+@keyframes vlc-shimmer {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+.vlc-skeleton-pulse {
+  animation: vlc-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes vlc-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.vlc-spin {
+  animation: vlc-spin 1s linear infinite;
+}
+
+/* ------------------------------------------------------------------
+ * Phase 10 — Responsive & Mobile
+ * ------------------------------------------------------------------ */
+.vlc-control-bar {
+  height: 60px;
+}
+@media (max-width: 768px) {
+  .vlc-floating-panel {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+  
+  .vlc-dock-rail {
+    top: auto !important;
+    bottom: 80px !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    flex-direction: row !important;
+    border-radius: 14px !important;
+    border-right: 1px solid color-mix(in oklab, var(--vlc-text-primary) 8%, transparent) !important;
+    padding: 8px 12px !important;
+  }
+  
+  .vlc-control-bar {
+    height: auto !important;
+    flex-wrap: wrap !important;
+    padding: 8px 12px !important;
+    justify-content: center !important;
+  }
+  .vlc-control-bar > div {
+    justify-content: center !important;
+    margin-bottom: 8px !important;
+  }
+  .vlc-control-bar > div:last-child {
+    margin-bottom: 0 !important;
+  }
+  .vlc-control-center-meta {
+    order: -1 !important;
+    width: 100% !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Phase 6 — Dialog & Panel System
+ * ------------------------------------------------------------------ */
+.vlc-input {
+  background: var(--vlc-bg-sunken);
+  color: var(--vlc-text-primary);
+  border: 1px solid var(--vlc-border-normal);
+  transition: border-color var(--vlc-dur-fast), box-shadow var(--vlc-dur-fast);
+  outline: none;
+}
+.vlc-input:hover {
+  border-color: color-mix(in oklab, var(--vlc-border-normal) 60%, var(--vlc-text-primary));
+}
+.vlc-input:focus {
+  border-color: var(--vlc-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--vlc-accent) 25%, transparent);
+}
+.vlc-input[aria-invalid="true"] {
+  border-color: var(--vlc-warning);
+}
+.vlc-input[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--vlc-warning) 25%, transparent);
+}
+
+.vlc-btn-dialog {
+  transition: transform var(--vlc-dur-fast), background var(--vlc-dur-fast), filter var(--vlc-dur-fast);
+}
+.vlc-btn-dialog:active {
+  transform: scale(0.96);
+}
+
+/* ------------------------------------------------------------------
+ * Phase 4 — Control Bar Micro-Interactions
+ * ------------------------------------------------------------------ */
+@keyframes vlc-ripple-expand {
+  0%   { transform: scale(0); opacity: 0.25; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.vlc-btn-ripple {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background: var(--vlc-text-primary);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+.vlc-ctrl-btn:active .vlc-btn-ripple {
+  animation: vlc-ripple-expand 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vlc-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  cursor: ew-resize;
+}
+.vlc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--vlc-text-primary);
+  box-shadow: 0 0 0 2px var(--vlc-bg-surface), var(--vlc-shadow-2);
+  transition: transform var(--vlc-dur-fast) var(--vlc-ease-standard);
+}
+.vlc-slider::-moz-range-thumb {
+  width: 12px; height: 12px; border: none;
+  border-radius: 50%;
+  background: var(--vlc-text-primary);
+  box-shadow: 0 0 0 2px var(--vlc-bg-surface), var(--vlc-shadow-2);
+  transition: transform var(--vlc-dur-fast) var(--vlc-ease-standard);
+}
+.vlc-slider:active::-webkit-slider-thumb { transform: scale(1.3); }
+.vlc-slider:active::-moz-range-thumb { transform: scale(1.3); }
+
+@media (prefers-reduced-motion: reduce) {
+  .vlc-osd-pill,
+  .vlc-dock-rail,
+  .vlc-dock-blob { animation-duration: 0.01ms; }
+  .vlc-dock-btn:hover,
+  .vlc-dock-btn:active { transform: none; }
+  .vlc-empty-orb-1,
+  .vlc-empty-orb-2 { animation: none; }
+  .vlc-empty-card,
+  .vlc-empty-section { animation-duration: 0.01ms; }
+  .vlc-empty-card:hover { transform: none; }
+  .vlc-tooltip-enter { animation-duration: 0.01ms; }
+  .vlc-bookmark-marker:hover { transform: translateX(-50%) !important; box-shadow: none !important; }
+}

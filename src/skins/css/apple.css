@@ -1,0 +1,10 @@
+[data-skin="apple"] [data-vlc-region="title"],
+      [data-skin="apple"] [data-vlc-region="menu"],
+      [data-skin="apple"] [data-vlc-region="control"],
+      [data-skin="apple"] [data-vlc-region="seek"] {
+        backdrop-filter: saturate(180%) blur(24px);
+        -webkit-backdrop-filter: saturate(180%) blur(24px);
+      }
+      [data-skin="apple"] [data-vlc-region="control"] {
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }

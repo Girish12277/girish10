@@ -1,0 +1,45 @@
+[data-skin="pw-aurora-flow"] { color-scheme: var(--vlc-color-scheme, dark); }
+  [data-skin="pw-aurora-flow"] [data-vlc-region] { overflow: visible; }
+  [data-skin="pw-aurora-flow"] [data-vlc-region="control"] button,
+  [data-skin="pw-aurora-flow"] [data-vlc-region="menu"] button,
+  [data-skin="pw-aurora-flow"] [data-vlc-region="title"] button {
+    transition: transform 120ms ease, background 160ms ease, box-shadow 220ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  [data-skin="pw-aurora-flow"] [data-vlc-region="control"] button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+  }
+  [data-skin="pw-aurora-flow"] [data-vlc-region="control"] [style*="vlc-font-mono"],
+  [data-skin="pw-aurora-flow"] .vlc-num { font-variant-numeric: tabular-nums; }
+  
+      @keyframes pw-aurora-drift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+      [data-skin="pw-aurora-flow"], [data-skin="pw-aurora-flow"] body {
+        background:
+          conic-gradient(from 180deg at 50% 50%, #22d3ee 0deg, #a855f7 120deg, #ec4899 240deg, #22d3ee 360deg),
+          #0a0520;
+        background-size: 300% 300%;
+        background-attachment: fixed;
+        animation: pw-aurora-drift 40s ease-in-out infinite;
+      }
+      [data-skin="pw-aurora-flow"] [data-vlc-region="title"],
+      [data-skin="pw-aurora-flow"] [data-vlc-region="menu"],
+      [data-skin="pw-aurora-flow"] [data-vlc-region="control"],
+      [data-skin="pw-aurora-flow"] [data-vlc-region="panel"],
+      [data-skin="pw-aurora-flow"] [data-vlc-region="playlist"] {
+        background: rgba(10,5,30,0.72) !important;
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border: 1px solid rgba(236,72,153,0.24);
+      }
+      [data-skin="pw-aurora-flow"] [data-vlc-region="control"] button:hover {
+        color: #f9a8d4 !important;
+        box-shadow: 0 0 20px rgba(236,72,153,0.55);
+      }
+      [data-skin="pw-aurora-flow"] [data-vlc-region="control"] button[title^="Play"],
+      [data-skin="pw-aurora-flow"] [data-vlc-region="control"] button[title^="Pause"] {
+        background: linear-gradient(135deg,#22d3ee,#a855f7,#ec4899) !important;
+        color: #fff !important;
+        border-radius: 999px !important;
+        box-shadow: 0 0 24px rgba(236,72,153,0.65), 0 0 48px rgba(168,85,247,0.35);
+      }
+      [data-skin="pw-aurora-flow"] [data-vlc-played] { background: linear-gradient(90deg,#22d3ee,#a855f7,#ec4899) !important; box-shadow: 0 0 12px rgba(236,72,153,0.7); }

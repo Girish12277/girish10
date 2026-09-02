@@ -1,0 +1,8 @@
+[data-skin="neon-sushi"] [data-vlc-region="title"],
+      [data-skin="neon-sushi"] [data-vlc-region="menu"],
+      [data-skin="neon-sushi"] [data-vlc-region="control"],
+      [data-skin="neon-sushi"] [data-vlc-region="seek"],
+      [data-skin="neon-sushi"] [data-vlc-region="panel"],
+      [data-skin="neon-sushi"] [data-vlc-region="playlist"] {
+        box-shadow: inset 0 -16px 48px color-mix(in oklab, var(--vlc-accent) 18%, transparent);
+      }

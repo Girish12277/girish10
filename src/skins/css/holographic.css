@@ -1,0 +1,6 @@
+[data-skin="holographic"] [data-vlc-region="control"],
+      [data-skin="holographic"] [data-vlc-region="seek"] {
+        background-image: conic-gradient(from 180deg, rgba(255,180,255,0.08), rgba(180,255,255,0.08), rgba(255,244,182,0.08), rgba(255,180,255,0.08));
+        box-shadow: 0 0 32px rgba(182,255,255,0.2);
+      }
+      [data-skin="holographic"] button:hover { filter: hue-rotate(45deg); }

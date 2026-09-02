@@ -1,0 +1,8 @@
+[data-skin="graph-paper"] [data-vlc-region="title"],
+      [data-skin="graph-paper"] [data-vlc-region="menu"],
+      [data-skin="graph-paper"] [data-vlc-region="control"],
+      [data-skin="graph-paper"] [data-vlc-region="seek"],
+      [data-skin="graph-paper"] [data-vlc-region="panel"],
+      [data-skin="graph-paper"] [data-vlc-region="playlist"] {
+        background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 18px 18px;
+      }

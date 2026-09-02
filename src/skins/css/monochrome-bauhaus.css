@@ -1,0 +1,8 @@
+[data-skin="monochrome-bauhaus"] [data-vlc-region="title"],
+      [data-skin="monochrome-bauhaus"] [data-vlc-region="menu"],
+      [data-skin="monochrome-bauhaus"] [data-vlc-region="control"],
+      [data-skin="monochrome-bauhaus"] [data-vlc-region="seek"],
+      [data-skin="monochrome-bauhaus"] [data-vlc-region="panel"],
+      [data-skin="monochrome-bauhaus"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(90deg, color-mix(in oklab, var(--vlc-border-normal) 70%, transparent) 0 1px, transparent 1px 48px);
+      }

@@ -1,0 +1,8 @@
+[data-skin="denim-workshop"] [data-vlc-region="title"],
+      [data-skin="denim-workshop"] [data-vlc-region="menu"],
+      [data-skin="denim-workshop"] [data-vlc-region="control"],
+      [data-skin="denim-workshop"] [data-vlc-region="seek"],
+      [data-skin="denim-workshop"] [data-vlc-region="panel"],
+      [data-skin="denim-workshop"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(-45deg, color-mix(in oklab, var(--vlc-accent) 14%, transparent) 0 12px, transparent 12px 24px);
+      }

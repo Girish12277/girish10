@@ -1,0 +1,9 @@
+[data-skin="solar-console"] [data-vlc-region="title"],
+      [data-skin="solar-console"] [data-vlc-region="menu"],
+      [data-skin="solar-console"] [data-vlc-region="control"],
+      [data-skin="solar-console"] [data-vlc-region="seek"],
+      [data-skin="solar-console"] [data-vlc-region="panel"],
+      [data-skin="solar-console"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(90deg, color-mix(in oklab, var(--vlc-border-normal) 70%, transparent) 0 1px, transparent 1px 48px);
+      }
+      [data-skin="solar-console"] button, [data-skin="solar-console"] input, [data-skin="solar-console"] select { color-scheme: dark light; }

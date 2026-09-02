@@ -1,0 +1,8 @@
+[data-skin="tide-pool"] [data-vlc-region="title"],
+      [data-skin="tide-pool"] [data-vlc-region="menu"],
+      [data-skin="tide-pool"] [data-vlc-region="control"],
+      [data-skin="tide-pool"] [data-vlc-region="seek"],
+      [data-skin="tide-pool"] [data-vlc-region="panel"],
+      [data-skin="tide-pool"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(ellipse at 20% 120%, color-mix(in oklab, var(--vlc-accent) 20%, transparent), transparent 45%);
+      }

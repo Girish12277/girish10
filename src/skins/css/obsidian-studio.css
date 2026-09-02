@@ -1,0 +1,9 @@
+[data-skin="obsidian-studio"] [data-vlc-region="title"],
+      [data-skin="obsidian-studio"] [data-vlc-region="menu"],
+      [data-skin="obsidian-studio"] [data-vlc-region="control"],
+      [data-skin="obsidian-studio"] [data-vlc-region="seek"],
+      [data-skin="obsidian-studio"] [data-vlc-region="panel"],
+      [data-skin="obsidian-studio"] [data-vlc-region="playlist"] {
+        backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
+      }
+      [data-skin="obsidian-studio"] button, [data-skin="obsidian-studio"] input, [data-skin="obsidian-studio"] select { color-scheme: dark light; }

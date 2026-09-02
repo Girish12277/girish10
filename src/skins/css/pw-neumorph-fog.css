@@ -1,0 +1,75 @@
+[data-skin="pw-neumorph-fog"] { color-scheme: var(--vlc-color-scheme, dark); }
+  [data-skin="pw-neumorph-fog"] [data-vlc-region] { overflow: visible; }
+  [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] button,
+  [data-skin="pw-neumorph-fog"] [data-vlc-region="menu"] button,
+  [data-skin="pw-neumorph-fog"] [data-vlc-region="title"] button {
+    transition: transform 120ms ease, background 160ms ease, box-shadow 220ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+  }
+  [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] [style*="vlc-font-mono"],
+  [data-skin="pw-neumorph-fog"] .vlc-num { font-variant-numeric: tabular-nums; }
+  
+      [data-skin="pw-neumorph-fog"] {
+        background: #e6ebf2 !important;
+      }
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="title"],
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="menu"] {
+        background: #e6ebf2 !important;
+        border: none;
+        box-shadow: 0 8px 20px -12px #c8cdd4;
+      }
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] {
+        background: #e6ebf2 !important;
+        border-top: 1px solid #d8dee6;
+        padding: 12px 20px !important;
+      }
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] button {
+        background: #e6ebf2 !important;
+        border: none !important;
+        border-radius: 50% !important;
+        color: #4a5db8 !important;
+        box-shadow: 6px 6px 14px #c8cdd4, -6px -6px 14px #ffffff;
+      }
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] button:hover {
+        color: #2b3548 !important;
+      }
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] button:active,
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] button[aria-pressed="true"] {
+        box-shadow: inset 4px 4px 10px #c8cdd4, inset -4px -4px 10px #ffffff !important;
+        color: #6b7fd7 !important;
+      }
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] button[title^="Play"],
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="control"] button[title^="Pause"] {
+        width: 52px !important; height: 52px !important;
+        background: linear-gradient(135deg,#8194e0,#6b7fd7) !important;
+        color: #fff !important;
+        box-shadow: 8px 8px 20px #c8cdd4, -8px -8px 20px #ffffff, inset 0 1px 0 rgba(255,255,255,0.4);
+      }
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="panel"],
+      [data-skin="pw-neumorph-fog"] [data-vlc-region="playlist"] {
+        background: #e6ebf2 !important;
+        border: none !important;
+        border-radius: var(--vlc-radius-lg) !important;
+        box-shadow: 12px 12px 30px #c8cdd4, -12px -12px 30px #ffffff !important;
+        color: #2b3548;
+      }
+      [data-skin="pw-neumorph-fog"] [data-vlc-track] {
+        background: #e6ebf2 !important;
+        box-shadow: inset 3px 3px 6px #c8cdd4, inset -3px -3px 6px #ffffff !important;
+        height: 10px !important;
+        border-radius: 999px !important;
+      }
+      [data-skin="pw-neumorph-fog"] [data-vlc-played] {
+        background: linear-gradient(90deg,#8194e0,#6b7fd7) !important;
+        border-radius: 999px !important;
+      }
+      [data-skin="pw-neumorph-fog"] input, [data-skin="pw-neumorph-fog"] textarea, [data-skin="pw-neumorph-fog"] select {
+        background: #e6ebf2 !important;
+        border: none !important;
+        color: #2b3548 !important;
+        border-radius: var(--vlc-radius-sm) !important;
+        box-shadow: inset 4px 4px 10px #c8cdd4, inset -4px -4px 10px #ffffff;
+      }

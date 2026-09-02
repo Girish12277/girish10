@@ -1,0 +1,3 @@
+[data-skin="wabi-sabi"] [data-vlc-region="title"] { letter-spacing: 4px; }
+      [data-skin="wabi-sabi"] [data-vlc-region="control"] { border-top: none !important; }
+      [data-skin="wabi-sabi"] [data-vlc-region="seek"] { background: transparent !important; }

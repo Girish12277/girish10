@@ -1,0 +1,8 @@
+[data-skin="ink-on-rice"] [data-vlc-region="title"],
+      [data-skin="ink-on-rice"] [data-vlc-region="menu"],
+      [data-skin="ink-on-rice"] [data-vlc-region="control"],
+      [data-skin="ink-on-rice"] [data-vlc-region="seek"],
+      [data-skin="ink-on-rice"] [data-vlc-region="panel"],
+      [data-skin="ink-on-rice"] [data-vlc-region="playlist"] {
+        background-image: linear-gradient(rgba(0,0,0,.035) 1px, transparent 1px); background-size: 100% 22px;
+      }

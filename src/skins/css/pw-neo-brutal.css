@@ -1,0 +1,74 @@
+[data-skin="pw-neo-brutal"] { color-scheme: var(--vlc-color-scheme, dark); }
+  [data-skin="pw-neo-brutal"] [data-vlc-region] { overflow: visible; }
+  [data-skin="pw-neo-brutal"] [data-vlc-region="control"] button,
+  [data-skin="pw-neo-brutal"] [data-vlc-region="menu"] button,
+  [data-skin="pw-neo-brutal"] [data-vlc-region="title"] button {
+    transition: transform 120ms ease, background 160ms ease, box-shadow 220ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  [data-skin="pw-neo-brutal"] [data-vlc-region="control"] button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+  }
+  [data-skin="pw-neo-brutal"] [data-vlc-region="control"] [style*="vlc-font-mono"],
+  [data-skin="pw-neo-brutal"] .vlc-num { font-variant-numeric: tabular-nums; }
+  
+      [data-skin="pw-neo-brutal"] { background: #faf7ed !important; font-weight: 700; }
+      [data-skin="pw-neo-brutal"] [data-vlc-region="title"],
+      [data-skin="pw-neo-brutal"] [data-vlc-region="menu"] {
+        background: #ffffff !important;
+        border-bottom: 3px solid #000 !important;
+        color: #000;
+      }
+      [data-skin="pw-neo-brutal"] [data-vlc-region="control"] {
+        background: #ffffff !important;
+        border-top: 3px solid #000 !important;
+        padding: 10px 14px !important;
+        gap: 8px;
+      }
+      [data-skin="pw-neo-brutal"] [data-vlc-region="control"] button {
+        background: #ffffff !important;
+        border: 3px solid #000 !important;
+        border-radius: 0 !important;
+        color: #000 !important;
+        box-shadow: 3px 3px 0 #000 !important;
+        font-weight: 800;
+      }
+      [data-skin="pw-neo-brutal"] [data-vlc-region="control"] button:hover {
+        background: #facc15 !important;
+        transform: translate(-1px,-1px);
+        box-shadow: 4px 4px 0 #000 !important;
+      }
+      [data-skin="pw-neo-brutal"] [data-vlc-region="control"] button:active {
+        transform: translate(2px,2px);
+        box-shadow: 1px 1px 0 #000 !important;
+      }
+      [data-skin="pw-neo-brutal"] [data-vlc-region="control"] button[title^="Play"],
+      [data-skin="pw-neo-brutal"] [data-vlc-region="control"] button[title^="Pause"] {
+        background: #facc15 !important;
+        color: #000 !important;
+        border: 3px solid #000 !important;
+        box-shadow: 4px 4px 0 #000 !important;
+      }
+      [data-skin="pw-neo-brutal"] [data-vlc-region="panel"],
+      [data-skin="pw-neo-brutal"] [data-vlc-region="playlist"] {
+        background: #ffffff !important;
+        border: 3px solid #000 !important;
+        border-radius: 0 !important;
+        box-shadow: 6px 6px 0 #000 !important;
+        color: #000;
+      }
+      [data-skin="pw-neo-brutal"] [data-vlc-track] {
+        height: 12px !important;
+        background: #ffffff !important;
+        border: 3px solid #000 !important;
+        border-radius: 0 !important;
+      }
+      [data-skin="pw-neo-brutal"] [data-vlc-played] { background: #facc15 !important; border-radius: 0 !important; }
+      [data-skin="pw-neo-brutal"] input, [data-skin="pw-neo-brutal"] textarea, [data-skin="pw-neo-brutal"] select {
+        background: #ffffff !important;
+        border: 3px solid #000 !important;
+        border-radius: 0 !important;
+        color: #000 !important;
+        box-shadow: 3px 3px 0 #000;
+      }
+      [data-skin="pw-neo-brutal"] h1, [data-skin="pw-neo-brutal"] h2, [data-skin="pw-neo-brutal"] h3 { text-transform: uppercase; letter-spacing: -0.02em; font-weight: 900; }

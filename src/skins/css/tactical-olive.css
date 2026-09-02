@@ -1,0 +1,8 @@
+[data-skin="tactical-olive"] [data-vlc-region="title"],
+      [data-skin="tactical-olive"] [data-vlc-region="menu"],
+      [data-skin="tactical-olive"] [data-vlc-region="control"],
+      [data-skin="tactical-olive"] [data-vlc-region="seek"],
+      [data-skin="tactical-olive"] [data-vlc-region="panel"],
+      [data-skin="tactical-olive"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(45deg, color-mix(in oklab, var(--vlc-accent) 16%, transparent) 0 10px, transparent 10px 20px);
+      }

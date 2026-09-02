@@ -1,0 +1,9 @@
+[data-skin="arcade"] { image-rendering: pixelated; }
+      [data-skin="arcade"] [data-vlc-region="title"],
+      [data-skin="arcade"] [data-vlc-region="menu"],
+      [data-skin="arcade"] [data-vlc-region="seek"],
+      [data-skin="arcade"] [data-vlc-region="control"] {
+        border: 4px solid #ff00aa !important;
+        box-shadow: inset 0 0 0 2px #000, 0 0 0 2px #ffff00;
+      }
+      [data-skin="arcade"] button { font-size: 8px !important; letter-spacing: 1px; }

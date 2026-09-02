@@ -1,0 +1,9 @@
+[data-skin="plasma-orange"] [data-vlc-region="title"],
+      [data-skin="plasma-orange"] [data-vlc-region="menu"],
+      [data-skin="plasma-orange"] [data-vlc-region="control"],
+      [data-skin="plasma-orange"] [data-vlc-region="seek"],
+      [data-skin="plasma-orange"] [data-vlc-region="panel"],
+      [data-skin="plasma-orange"] [data-vlc-region="playlist"] {
+        box-shadow: inset 0 0 42px color-mix(in oklab, var(--vlc-accent) 18%, transparent);
+      }
+      [data-skin="plasma-orange"] button, [data-skin="plasma-orange"] input, [data-skin="plasma-orange"] select { color-scheme: dark light; }

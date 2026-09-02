@@ -1,0 +1,9 @@
+[data-skin="metro-modern"] [data-vlc-region="title"],
+      [data-skin="metro-modern"] [data-vlc-region="menu"],
+      [data-skin="metro-modern"] [data-vlc-region="control"],
+      [data-skin="metro-modern"] [data-vlc-region="seek"],
+      [data-skin="metro-modern"] [data-vlc-region="panel"],
+      [data-skin="metro-modern"] [data-vlc-region="playlist"] {
+        background-image: linear-gradient(90deg, color-mix(in oklab, var(--vlc-accent) 22%, transparent) 0 6px, transparent 6px);
+      }
+      [data-skin="metro-modern"] button, [data-skin="metro-modern"] input, [data-skin="metro-modern"] select { color-scheme: dark light; }

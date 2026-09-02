@@ -1,0 +1,8 @@
+[data-skin="graphene-grid"] [data-vlc-region="title"],
+      [data-skin="graphene-grid"] [data-vlc-region="menu"],
+      [data-skin="graphene-grid"] [data-vlc-region="control"],
+      [data-skin="graphene-grid"] [data-vlc-region="seek"],
+      [data-skin="graphene-grid"] [data-vlc-region="panel"],
+      [data-skin="graphene-grid"] [data-vlc-region="playlist"] {
+        background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 18px 18px;
+      }

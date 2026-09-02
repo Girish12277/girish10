@@ -1,0 +1,9 @@
+[data-skin="banana-split"] [data-vlc-region="title"],
+      [data-skin="banana-split"] [data-vlc-region="menu"],
+      [data-skin="banana-split"] [data-vlc-region="control"],
+      [data-skin="banana-split"] [data-vlc-region="seek"],
+      [data-skin="banana-split"] [data-vlc-region="panel"],
+      [data-skin="banana-split"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(-45deg, color-mix(in oklab, var(--vlc-accent) 14%, transparent) 0 12px, transparent 12px 24px);
+      }
+      [data-skin="banana-split"] button, [data-skin="banana-split"] input, [data-skin="banana-split"] select { color-scheme: dark light; }

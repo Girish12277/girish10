@@ -1,0 +1,6 @@
+[data-skin="blueprint"] [data-vlc-region="seek"],
+      [data-skin="blueprint"] [data-vlc-region="control"] {
+        background-image: linear-gradient(rgba(170,220,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(170,220,255,0.07) 1px, transparent 1px);
+        background-size: 24px 24px;
+        border-top: 1px dashed rgba(170,220,255,0.4) !important;
+      }

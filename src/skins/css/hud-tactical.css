@@ -1,0 +1,3 @@
+[data-skin="hud-tactical"] { letter-spacing: 1px; text-transform: uppercase; }
+      [data-skin="hud-tactical"] [data-vlc-region="title"]::before { content: "▣ "; color: #ffb000; }
+      [data-skin="hud-tactical"] [data-vlc-region="control"] { border-top: 1px dashed #ffb000 !important; }

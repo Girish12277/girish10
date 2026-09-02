@@ -1,0 +1,8 @@
+[data-skin="obsidian-prism"] [data-vlc-region="title"],
+      [data-skin="obsidian-prism"] [data-vlc-region="menu"],
+      [data-skin="obsidian-prism"] [data-vlc-region="control"],
+      [data-skin="obsidian-prism"] [data-vlc-region="seek"],
+      [data-skin="obsidian-prism"] [data-vlc-region="panel"],
+      [data-skin="obsidian-prism"] [data-vlc-region="playlist"] {
+        backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
+      }

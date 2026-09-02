@@ -1,0 +1,9 @@
+[data-skin="hologram-blue"] [data-vlc-region="title"],
+      [data-skin="hologram-blue"] [data-vlc-region="menu"],
+      [data-skin="hologram-blue"] [data-vlc-region="control"],
+      [data-skin="hologram-blue"] [data-vlc-region="seek"],
+      [data-skin="hologram-blue"] [data-vlc-region="panel"],
+      [data-skin="hologram-blue"] [data-vlc-region="playlist"] {
+        background-image: linear-gradient(120deg, transparent, color-mix(in oklab, var(--vlc-accent) 12%, transparent), transparent);
+      }
+      [data-skin="hologram-blue"] button, [data-skin="hologram-blue"] input, [data-skin="hologram-blue"] select { color-scheme: dark light; }

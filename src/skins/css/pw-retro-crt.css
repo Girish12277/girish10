@@ -1,0 +1,62 @@
+[data-skin="pw-retro-crt"] { color-scheme: var(--vlc-color-scheme, dark); }
+  [data-skin="pw-retro-crt"] [data-vlc-region] { overflow: visible; }
+  [data-skin="pw-retro-crt"] [data-vlc-region="control"] button,
+  [data-skin="pw-retro-crt"] [data-vlc-region="menu"] button,
+  [data-skin="pw-retro-crt"] [data-vlc-region="title"] button {
+    transition: transform 120ms ease, background 160ms ease, box-shadow 220ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  [data-skin="pw-retro-crt"] [data-vlc-region="control"] button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+  }
+  [data-skin="pw-retro-crt"] [data-vlc-region="control"] [style*="vlc-font-mono"],
+  [data-skin="pw-retro-crt"] .vlc-num { font-variant-numeric: tabular-nums; }
+  
+      [data-skin="pw-retro-crt"] {
+        background:
+          linear-gradient(180deg,#0a0018 0%,#1a0038 60%,#2a0055 100%) !important;
+        background-attachment: fixed;
+      }
+      [data-skin="pw-retro-crt"] [data-vlc-region="title"],
+      [data-skin="pw-retro-crt"] [data-vlc-region="menu"],
+      [data-skin="pw-retro-crt"] [data-vlc-region="control"],
+      [data-skin="pw-retro-crt"] [data-vlc-region="panel"],
+      [data-skin="pw-retro-crt"] [data-vlc-region="playlist"] {
+        background:
+          repeating-linear-gradient(0deg, rgba(0,0,0,0.28) 0 2px, transparent 2px 4px),
+          linear-gradient(180deg,#12002a,#1a0038) !important;
+        border: 1px solid #ec4899 !important;
+        color: #ffe4f9;
+        text-shadow: 0 0 4px rgba(236,72,153,0.6);
+        font-size: 15px;
+      }
+      [data-skin="pw-retro-crt"] [data-vlc-region="control"] button {
+        background: transparent !important;
+        border: 1px solid #ec4899 !important;
+        color: #22d3ee !important;
+        text-shadow: 0 0 6px rgba(34,211,238,0.7);
+        border-radius: 2px !important;
+      }
+      [data-skin="pw-retro-crt"] [data-vlc-region="control"] button:hover {
+        background: rgba(236,72,153,0.20) !important;
+        color: #f472b6 !important;
+        box-shadow: 0 0 12px rgba(236,72,153,0.7);
+      }
+      [data-skin="pw-retro-crt"] [data-vlc-region="control"] button[title^="Play"],
+      [data-skin="pw-retro-crt"] [data-vlc-region="control"] button[title^="Pause"] {
+        background: rgba(236,72,153,0.25) !important;
+        border: 2px solid #ec4899 !important;
+        color: #22d3ee !important;
+        box-shadow: 0 0 20px rgba(236,72,153,0.75), inset 0 0 12px rgba(34,211,238,0.35);
+      }
+      [data-skin="pw-retro-crt"] [data-vlc-track] { height: 4px !important; background: #050010 !important; border: 1px solid #ec4899 !important; border-radius: 0 !important; }
+      [data-skin="pw-retro-crt"] [data-vlc-played] { background: linear-gradient(90deg,#ec4899,#22d3ee) !important; box-shadow: 0 0 8px #ec4899, 0 0 16px #22d3ee; border-radius: 0 !important; }
+      [data-skin="pw-retro-crt"] input, [data-skin="pw-retro-crt"] textarea, [data-skin="pw-retro-crt"] select {
+        background: #050010 !important;
+        border: 1px solid #ec4899 !important;
+        color: #22d3ee !important;
+        border-radius: 2px !important;
+        font-family: "VT323",monospace;
+        font-size: 15px;
+        text-shadow: 0 0 4px rgba(34,211,238,0.6);
+      }

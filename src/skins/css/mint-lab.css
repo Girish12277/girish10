@@ -1,0 +1,9 @@
+[data-skin="mint-lab"] [data-vlc-region="title"],
+      [data-skin="mint-lab"] [data-vlc-region="menu"],
+      [data-skin="mint-lab"] [data-vlc-region="control"],
+      [data-skin="mint-lab"] [data-vlc-region="seek"],
+      [data-skin="mint-lab"] [data-vlc-region="panel"],
+      [data-skin="mint-lab"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(color-mix(in oklab, var(--vlc-accent) 18%, transparent) 1px, transparent 1.5px); background-size: 14px 14px;
+      }
+      [data-skin="mint-lab"] button, [data-skin="mint-lab"] input, [data-skin="mint-lab"] select { color-scheme: dark light; }

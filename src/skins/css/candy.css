@@ -1,0 +1,8 @@
+[data-skin="candy"] [data-vlc-region="title"],
+      [data-skin="candy"] [data-vlc-region="menu"],
+      [data-skin="candy"] [data-vlc-region="seek"],
+      [data-skin="candy"] [data-vlc-region="control"] {
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+      [data-skin="candy"] button:hover { transform: scale(1.05); transition: transform 120ms ease; }

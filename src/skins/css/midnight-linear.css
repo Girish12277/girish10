@@ -1,0 +1,369 @@
+/* ============================================================
+         MIDNIGHT LINEAR — deep, comprehensive scoped styling.
+         Touches every visible surface but is 100% scoped to this skin.
+         ============================================================ */
+      [data-skin="midnight-linear"] {
+        font-family: var(--vlc-font-ui);
+        letter-spacing: -0.01em;
+        font-feature-settings: "ss01", "cv11", "tnum";
+        -webkit-font-smoothing: antialiased;
+        color-scheme: dark;
+      }
+      [data-skin="midnight-linear"] *,
+      [data-skin="midnight-linear"] *::before,
+      [data-skin="midnight-linear"] *::after {
+        border-color: var(--vlc-border-subtle);
+      }
+
+      /* ---------- TitleBar (32px frosted) ---------- */
+      [data-skin="midnight-linear"] [data-vlc-region="title"] {
+        height: 32px;
+        background: var(--vlc-bg-surface);
+        border-bottom: 1px solid var(--vlc-border-subtle);
+        backdrop-filter: saturate(140%) blur(20px);
+        font-size: 12px;
+        letter-spacing: 0.01em;
+      }
+
+      /* ---------- MenuBar (28px) + dropdowns ---------- */
+      [data-skin="midnight-linear"] [data-vlc-region="menu"] {
+        background: var(--vlc-bg-surface);
+        border-bottom: 1px solid var(--vlc-border-subtle);
+        font-size: 12.5px;
+      }
+      [data-skin="midnight-linear"] [data-vlc-menu] {
+        border-radius: var(--vlc-radius-sm);
+        transition: background var(--vlc-transition-fast), color var(--vlc-transition-fast);
+        padding: 4px 10px;
+      }
+      [data-skin="midnight-linear"] [data-vlc-menu]:hover {
+        background: var(--vlc-accent-dim);
+        color: var(--vlc-accent-text);
+      }
+      [data-skin="midnight-linear"] [role="menu"],
+      [data-skin="midnight-linear"] [data-radix-menu-content] {
+        background: var(--vlc-bg-elevated) !important;
+        border: 1px solid var(--vlc-border-normal) !important;
+        border-radius: var(--vlc-radius-md) !important;
+        box-shadow: var(--vlc-shadow-popup);
+        padding: 4px;
+      }
+      [data-skin="midnight-linear"] [role="menuitem"]:hover {
+        background: var(--vlc-accent-dim);
+        color: var(--vlc-accent-text);
+        border-radius: var(--vlc-radius-sm);
+      }
+
+      /* ---------- SeekBar ---------- */
+      [data-skin="midnight-linear"] [data-vlc-region="seek"] {
+        background: transparent;
+        padding: 10px 16px 6px;
+      }
+      [data-skin="midnight-linear"] [data-vlc-track] {
+        height: 3px !important;
+        border-radius: 999px;
+        background: var(--vlc-seek-track) !important;
+        transition: height 180ms cubic-bezier(0.2,0,0,1), box-shadow 180ms cubic-bezier(0.2,0,0,1);
+        overflow: visible !important;
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="seek"]:hover [data-vlc-track] {
+        height: 6px !important;
+        box-shadow: 0 0 24px -2px var(--vlc-accent-dim);
+      }
+      [data-skin="midnight-linear"] [data-vlc-played] {
+        background: linear-gradient(90deg, oklch(0.62 0.18 265), oklch(0.78 0.18 265)) !important;
+        border-radius: 999px;
+        box-shadow: 0 0 12px oklch(0.68 0.18 265 / 0.6);
+      }
+      [data-skin="midnight-linear"] [data-vlc-buffered] { border-radius: 999px; }
+
+      /* ---------- ControlBar ---------- */
+      [data-skin="midnight-linear"] [data-vlc-region="control"] {
+        height: 64px !important;
+        background: var(--vlc-bg-surface);
+        border-top: 1px solid var(--vlc-border-subtle);
+        padding: 0 16px !important;
+        gap: 4px;
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="control"] button {
+        transition: transform 80ms ease, background var(--vlc-transition-fast), color var(--vlc-transition-fast), box-shadow var(--vlc-transition-fast);
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="control"] button:active {
+        transform: scale(0.94);
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="control"] button:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+      }
+      /* Bigger play/pause button (the large one) with indigo halo */
+      [data-skin="midnight-linear"] [data-vlc-region="control"] button[title^="Play"],
+      [data-skin="midnight-linear"] [data-vlc-region="control"] button[title^="Pause"] {
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 999px !important;
+        background: var(--vlc-accent-dim) !important;
+        color: var(--vlc-text-primary) !important;
+        box-shadow: 0 0 0 1px var(--vlc-border-normal), 0 0 24px -2px var(--vlc-accent-dim);
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="control"] button[title^="Pause"] {
+        animation: vlc-midnight-bloom 1800ms ease-in-out infinite;
+      }
+      @keyframes vlc-midnight-bloom {
+        0%, 100% { box-shadow: 0 0 0 1px var(--vlc-border-normal), 0 0 18px -2px oklch(0.68 0.18 265 / 0.5); }
+        50%      { box-shadow: 0 0 0 1px var(--vlc-border-normal), 0 0 32px -2px oklch(0.68 0.18 265 / 0.8); }
+      }
+      /* Volume slider track gradient with boost tint */
+      [data-skin="midnight-linear"] [data-vlc-region="control"] input[type="range"] {
+        height: 4px;
+        appearance: none;
+        background: linear-gradient(90deg,
+          oklch(0.68 0.18 265) 0%, oklch(0.68 0.18 265) 50%,
+          oklch(0.78 0.20 35) 50%, oklch(0.78 0.20 35) 100%);
+        border-radius: 999px;
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="control"] input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 12px; height: 12px;
+        border-radius: 999px;
+        background: var(--vlc-text-primary);
+        box-shadow: 0 0 0 3px oklch(0 0 0 / 0.3);
+      }
+      /* Timecode mono with tabular nums */
+      [data-skin="midnight-linear"] [data-vlc-region="control"] [style*="vlc-font-mono"] {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ---------- Panels & playlist ---------- */
+      [data-skin="midnight-linear"] [data-vlc-region="panel"],
+      [data-skin="midnight-linear"] [data-vlc-region="playlist"] {
+        background: var(--vlc-bg-elevated) !important;
+        border: 1px solid var(--vlc-border-normal) !important;
+        border-radius: var(--vlc-radius-md) !important;
+        box-shadow: var(--vlc-shadow-popup);
+        animation: vlc-midnight-panel-in 220ms cubic-bezier(0.2,0,0,1);
+        color: var(--vlc-text-primary);
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="panel"]::before,
+      [data-skin="midnight-linear"] [data-vlc-region="playlist"]::before {
+        content: "";
+        position: absolute; left: 0; right: 0; top: 0; height: 1px;
+        background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.12), transparent);
+        pointer-events: none;
+        border-top-left-radius: var(--vlc-radius-md);
+        border-top-right-radius: var(--vlc-radius-md);
+        z-index: 1;
+      }
+      @keyframes vlc-midnight-panel-in {
+        from { opacity: 0; transform: translateY(6px) scale(0.99); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      /* Panel headers — first heading uses display serif */
+      [data-skin="midnight-linear"] [data-vlc-region="panel"] h1,
+      [data-skin="midnight-linear"] [data-vlc-region="panel"] h2,
+      [data-skin="midnight-linear"] [data-vlc-region="panel"] h3,
+      [data-skin="midnight-linear"] [data-vlc-region="playlist"] h1,
+      [data-skin="midnight-linear"] [data-vlc-region="playlist"] h2 {
+        font-family: var(--vlc-font-display);
+        font-weight: 400;
+        letter-spacing: -0.015em;
+      }
+      /* Section labels: uppercase tracked ghost */
+      [data-skin="midnight-linear"] [data-vlc-region="panel"] label,
+      [data-skin="midnight-linear"] [data-vlc-region="panel"] [data-section-label] {
+        text-transform: uppercase;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        color: var(--vlc-text-ghost);
+        font-weight: 600;
+      }
+      /* Playlist rows */
+      [data-skin="midnight-linear"] [data-vlc-region="playlist"] li,
+      [data-skin="midnight-linear"] [data-vlc-region="playlist"] [role="option"] {
+        border-radius: var(--vlc-radius-sm);
+        transition: background var(--vlc-transition-fast);
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="playlist"] li:hover,
+      [data-skin="midnight-linear"] [data-vlc-region="playlist"] [role="option"]:hover {
+        background: var(--vlc-accent-dim);
+      }
+
+      /* ---------- Skin gallery cards ---------- */
+      [data-skin="midnight-linear"] [data-vlc-skinned] {
+        border: 1px solid var(--vlc-border-subtle) !important;
+        border-radius: var(--vlc-radius-md) !important;
+        background: var(--vlc-bg-elevated);
+        transition: border-color var(--vlc-transition-fast), transform var(--vlc-transition-fast), box-shadow var(--vlc-transition-fast);
+      }
+      [data-skin="midnight-linear"] [data-vlc-skinned]:hover {
+        border-color: var(--vlc-accent) !important;
+        transform: translateY(-1px);
+        box-shadow: 0 12px 24px -12px oklch(0 0 0 / 0.6), 0 0 0 1px var(--vlc-accent-dim);
+      }
+
+      /* ---------- Inputs / sliders / textarea / select ---------- */
+      [data-skin="midnight-linear"] input[type="text"],
+      [data-skin="midnight-linear"] input[type="number"],
+      [data-skin="midnight-linear"] input[type="url"],
+      [data-skin="midnight-linear"] input[type="search"],
+      [data-skin="midnight-linear"] textarea,
+      [data-skin="midnight-linear"] select {
+        background: var(--vlc-bg-sunken) !important;
+        color: var(--vlc-text-primary);
+        border: 1px solid var(--vlc-border-normal) !important;
+        border-radius: var(--vlc-radius-sm) !important;
+        height: 40px;
+        padding: 0 12px;
+        font-size: 13px;
+        transition: border-color var(--vlc-transition-fast), box-shadow var(--vlc-transition-fast);
+      }
+      [data-skin="midnight-linear"] textarea { height: auto; padding: 10px 12px; }
+      [data-skin="midnight-linear"] input:focus,
+      [data-skin="midnight-linear"] textarea:focus,
+      [data-skin="midnight-linear"] select:focus {
+        outline: none;
+        border-color: var(--vlc-accent) !important;
+        box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+      }
+      /* Generic range sliders inside panels (GodMode/Effects) */
+      [data-skin="midnight-linear"] [data-vlc-region="panel"] input[type="range"] {
+        appearance: none;
+        height: 4px;
+        background: var(--vlc-bg-sunken);
+        border-radius: 999px;
+        accent-color: var(--vlc-accent);
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="panel"] input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 14px; height: 14px;
+        background: var(--vlc-accent);
+        border-radius: 999px;
+        box-shadow: 0 0 0 4px var(--vlc-accent-dim);
+        transition: transform 80ms ease;
+      }
+      [data-skin="midnight-linear"] [data-vlc-region="panel"] input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.15);
+      }
+
+      /* ---------- Buttons (general) ---------- */
+      [data-skin="midnight-linear"] button {
+        transition: background var(--vlc-transition-fast), color var(--vlc-transition-fast), border-color var(--vlc-transition-fast), transform 80ms ease, box-shadow var(--vlc-transition-fast);
+      }
+      [data-skin="midnight-linear"] button:active { transform: scale(0.97); }
+      [data-skin="midnight-linear"] button:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+      }
+
+      /* ---------- Dialogs (Network/Jump/Help) & CommandPalette ---------- */
+      [data-skin="midnight-linear"] [role="dialog"],
+      [data-skin="midnight-linear"] [data-state="open"][role="dialog"] {
+        background: var(--vlc-bg-elevated) !important;
+        border: 1px solid var(--vlc-border-normal) !important;
+        border-radius: var(--vlc-radius-md) !important;
+        box-shadow: var(--vlc-shadow-popup);
+        animation: vlc-midnight-panel-in 220ms cubic-bezier(0.2,0,0,1);
+      }
+      [data-skin="midnight-linear"] [role="dialog"] h1,
+      [data-skin="midnight-linear"] [role="dialog"] h2 {
+        font-family: var(--vlc-font-display);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        font-size: 22px;
+      }
+      [data-skin="midnight-linear"] [data-radix-dialog-overlay],
+      [data-skin="midnight-linear"] [data-state="open"][data-radix-portal] > div:first-child {
+        background: oklch(0 0 0 / 0.6) !important;
+        backdrop-filter: blur(12px);
+      }
+      /* kbd hint chips */
+      [data-skin="midnight-linear"] kbd {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-width: 20px; height: 20px; padding: 0 6px;
+        font-family: var(--vlc-font-mono);
+        font-size: 10.5px;
+        background: var(--vlc-bg-sunken);
+        border: 1px solid var(--vlc-border-normal);
+        border-radius: 4px;
+        color: var(--vlc-text-secondary);
+        box-shadow: 0 1px 0 oklch(0 0 0 / 0.4);
+      }
+
+      /* ---------- OSD — top-center pill ---------- */
+      [data-skin="midnight-linear"] [data-vlc-osd] {
+        left: 50% !important;
+        right: auto !important;
+        top: 16px !important;
+        transform: translateX(-50%);
+        align-items: center !important;
+      }
+      [data-skin="midnight-linear"] [data-vlc-osd] > div {
+        background: oklch(0.14 0.02 265 / 0.78) !important;
+        border: 1px solid var(--vlc-border-normal);
+        backdrop-filter: blur(20px) saturate(160%);
+        border-radius: 999px !important;
+        padding: 8px 16px !important;
+        font-family: var(--vlc-font-mono) !important;
+        font-size: 12px !important;
+        letter-spacing: 0.02em;
+        box-shadow: 0 8px 24px -8px oklch(0 0 0 / 0.5);
+        animation: vlc-midnight-osd-in 240ms cubic-bezier(0.2,0,0,1);
+      }
+      @keyframes vlc-midnight-osd-in {
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ---------- Empty state — editorial moment ---------- */
+      [data-skin="midnight-linear"] [data-vlc-empty] {
+        background:
+          radial-gradient(circle at 50% 30%, oklch(0.20 0.05 265 / 0.6), transparent 60%),
+          linear-gradient(180deg, var(--vlc-bg-base), var(--vlc-bg-sunken));
+        position: relative;
+      }
+      [data-skin="midnight-linear"] [data-vlc-empty]::before {
+        content: "";
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(oklch(1 0 0 / 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, oklch(1 0 0 / 0.025) 1px, transparent 1px);
+        background-size: 32px 32px;
+        mask-image: radial-gradient(circle at center, black, transparent 70%);
+        pointer-events: none;
+      }
+      [data-skin="midnight-linear"] [data-vlc-empty] h1,
+      [data-skin="midnight-linear"] [data-vlc-empty] h2 {
+        font-family: var(--vlc-font-display) !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.025em;
+        font-size: clamp(32px, 5.5vw, 56px) !important;
+        background: linear-gradient(180deg, oklch(0.98 0 0), oklch(0.78 0.04 265));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* ---------- Scrollbars ---------- */
+      [data-skin="midnight-linear"] *::-webkit-scrollbar { width: 6px; height: 6px; }
+      [data-skin="midnight-linear"] *::-webkit-scrollbar-thumb {
+        background: oklch(1 0 0 / 0.08);
+        border-radius: 999px;
+        transition: background var(--vlc-transition-fast);
+      }
+      [data-skin="midnight-linear"] *::-webkit-scrollbar-thumb:hover { background: var(--vlc-accent); }
+      [data-skin="midnight-linear"] *::-webkit-scrollbar-track { background: transparent; }
+
+      /* ---------- Selection ---------- */
+      [data-skin="midnight-linear"] ::selection {
+        background: var(--vlc-accent-dim);
+        color: var(--vlc-text-primary);
+      }
+
+      /* ---------- Reduced motion ---------- */
+      @media (prefers-reduced-motion: reduce) {
+        [data-skin="midnight-linear"] [data-vlc-region="panel"],
+        [data-skin="midnight-linear"] [data-vlc-region="playlist"],
+        [data-skin="midnight-linear"] [role="dialog"],
+        [data-skin="midnight-linear"] [data-vlc-osd] > div { animation: none; }
+        [data-skin="midnight-linear"] [data-vlc-track] { transition: none; }
+        [data-skin="midnight-linear"] [data-vlc-region="control"] button[title^="Pause"] { animation: none; }
+      }

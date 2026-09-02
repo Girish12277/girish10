@@ -1,0 +1,11 @@
+[data-skin="linen-couture"] { font-family: var(--vlc-font-ui); color-scheme: light; }
+      [data-skin="linen-couture"] [data-vlc-region="title"] {
+        background: var(--vlc-bg-surface);
+        border-bottom: 1px solid var(--vlc-border-subtle);
+      }
+      [data-skin="linen-couture"] h1,
+      [data-skin="linen-couture"] h2 {
+        font-family: var(--vlc-font-display);
+        font-weight: 400;
+        letter-spacing: -0.005em;
+      }

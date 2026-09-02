@@ -1,0 +1,9 @@
+[data-skin="manga-night"] [data-vlc-region="title"],
+      [data-skin="manga-night"] [data-vlc-region="menu"],
+      [data-skin="manga-night"] [data-vlc-region="control"],
+      [data-skin="manga-night"] [data-vlc-region="seek"],
+      [data-skin="manga-night"] [data-vlc-region="panel"],
+      [data-skin="manga-night"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(ellipse at center, transparent 55%, rgba(255,255,255,.06) 56%, transparent 58%); background-size: 18px 12px;
+      }
+      [data-skin="manga-night"] button, [data-skin="manga-night"] input, [data-skin="manga-night"] select { color-scheme: dark light; }

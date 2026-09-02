@@ -1,0 +1,8 @@
+[data-skin="cyan-grid"] [data-vlc-region="title"],
+      [data-skin="cyan-grid"] [data-vlc-region="menu"],
+      [data-skin="cyan-grid"] [data-vlc-region="control"],
+      [data-skin="cyan-grid"] [data-vlc-region="seek"],
+      [data-skin="cyan-grid"] [data-vlc-region="panel"],
+      [data-skin="cyan-grid"] [data-vlc-region="playlist"] {
+        background-image: linear-gradient(rgba(125,211,252,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(125,211,252,.12) 1px, transparent 1px); background-size: 20px 20px;
+      }

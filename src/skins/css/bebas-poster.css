@@ -1,0 +1,4 @@
+[data-skin="bebas-poster"] { letter-spacing: 1px; }
+      [data-skin="bebas-poster"] [data-vlc-region="title"],
+      [data-skin="bebas-poster"] [data-vlc-region="menu"] { text-transform: uppercase; letter-spacing: 3px; }
+      [data-skin="bebas-poster"] button { font-size: 14px; }

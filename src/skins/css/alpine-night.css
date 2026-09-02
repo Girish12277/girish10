@@ -1,0 +1,9 @@
+[data-skin="alpine-night"] [data-vlc-region="title"],
+      [data-skin="alpine-night"] [data-vlc-region="menu"],
+      [data-skin="alpine-night"] [data-vlc-region="control"],
+      [data-skin="alpine-night"] [data-vlc-region="seek"],
+      [data-skin="alpine-night"] [data-vlc-region="panel"],
+      [data-skin="alpine-night"] [data-vlc-region="playlist"] {
+        clip-path: none;
+      }
+      [data-skin="alpine-night"] button, [data-skin="alpine-night"] input, [data-skin="alpine-night"] select { color-scheme: dark light; }

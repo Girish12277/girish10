@@ -1,0 +1,8 @@
+[data-skin="boardroom-noir"] [data-vlc-region="title"],
+      [data-skin="boardroom-noir"] [data-vlc-region="menu"],
+      [data-skin="boardroom-noir"] [data-vlc-region="control"],
+      [data-skin="boardroom-noir"] [data-vlc-region="seek"],
+      [data-skin="boardroom-noir"] [data-vlc-region="panel"],
+      [data-skin="boardroom-noir"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 2px, transparent 2px 9px);
+      }

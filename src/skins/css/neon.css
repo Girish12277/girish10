@@ -1,0 +1,5 @@
+[data-skin="neon"] [data-vlc-region="control"],
+      [data-skin="neon"] [data-vlc-region="seek"] {
+        box-shadow: 0 0 24px rgba(255,0,200,0.35), inset 0 0 16px rgba(0,240,255,0.12);
+      }
+      [data-skin="neon"] button:hover { text-shadow: 0 0 8px #00f0ff, 0 0 16px #ff00c8; }

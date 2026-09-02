@@ -1,0 +1,8 @@
+[data-skin="studio-frosted"] [data-vlc-region="title"],
+      [data-skin="studio-frosted"] [data-vlc-region="menu"],
+      [data-skin="studio-frosted"] [data-vlc-region="control"],
+      [data-skin="studio-frosted"] [data-vlc-region="seek"],
+      [data-skin="studio-frosted"] [data-vlc-region="panel"],
+      [data-skin="studio-frosted"] [data-vlc-region="playlist"] {
+        backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      }

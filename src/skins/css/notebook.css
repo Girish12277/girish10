@@ -1,0 +1,3 @@
+[data-skin="notebook"] [data-vlc-region="seek"], [data-skin="notebook"] [data-vlc-region="control"] {
+        background-image: repeating-linear-gradient(transparent 0 23px, rgba(40,60,120,0.12) 23px 24px);
+      }

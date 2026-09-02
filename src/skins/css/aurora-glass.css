@@ -1,0 +1,8 @@
+[data-skin="aurora-glass"] [data-vlc-region="title"],
+      [data-skin="aurora-glass"] [data-vlc-region="menu"],
+      [data-skin="aurora-glass"] [data-vlc-region="seek"],
+      [data-skin="aurora-glass"] [data-vlc-region="control"] {
+        backdrop-filter: saturate(180%) blur(28px);
+        -webkit-backdrop-filter: saturate(180%) blur(28px);
+        border: 1px solid rgba(180,200,255,0.12) !important;
+      }

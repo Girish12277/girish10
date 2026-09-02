@@ -1,0 +1,8 @@
+[data-skin="vinyl-night"] [data-vlc-region="title"],
+      [data-skin="vinyl-night"] [data-vlc-region="menu"],
+      [data-skin="vinyl-night"] [data-vlc-region="control"],
+      [data-skin="vinyl-night"] [data-vlc-region="seek"],
+      [data-skin="vinyl-night"] [data-vlc-region="panel"],
+      [data-skin="vinyl-night"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(circle, transparent 38%, color-mix(in oklab, var(--vlc-accent) 18%, transparent) 39% 40%, transparent 41%); background-size: 120px 120px;
+      }

@@ -1,0 +1,8 @@
+[data-skin="carbon-emerald"] [data-vlc-region="title"],
+      [data-skin="carbon-emerald"] [data-vlc-region="menu"],
+      [data-skin="carbon-emerald"] [data-vlc-region="control"],
+      [data-skin="carbon-emerald"] [data-vlc-region="seek"],
+      [data-skin="carbon-emerald"] [data-vlc-region="panel"],
+      [data-skin="carbon-emerald"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.04) 0 2px, transparent 2px 6px), repeating-linear-gradient(-45deg, rgba(0,0,0,.35) 0 2px, transparent 2px 6px);
+      }

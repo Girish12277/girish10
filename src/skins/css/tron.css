@@ -1,0 +1,8 @@
+[data-skin="tron"] { letter-spacing: 1.5px; }
+      [data-skin="tron"] [data-vlc-region="control"],
+      [data-skin="tron"] [data-vlc-region="seek"] {
+        background-image: linear-gradient(rgba(0,229,255,0.06) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(0,229,255,0.06) 1px, transparent 1px);
+        background-size: 20px 20px;
+        box-shadow: 0 0 24px rgba(0,229,255,0.25);
+      }

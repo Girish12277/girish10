@@ -1,0 +1,4 @@
+[data-skin="circus"] [data-vlc-region="title"] {
+        background-image: repeating-linear-gradient(90deg, #c8252c 0 12px, #fdf6e3 12px 24px) !important;
+        color: #fff !important; text-shadow: 1px 1px 0 #000;
+      }

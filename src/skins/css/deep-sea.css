@@ -1,0 +1,9 @@
+[data-skin="deep-sea"] [data-vlc-region="title"],
+      [data-skin="deep-sea"] [data-vlc-region="menu"],
+      [data-skin="deep-sea"] [data-vlc-region="control"],
+      [data-skin="deep-sea"] [data-vlc-region="seek"],
+      [data-skin="deep-sea"] [data-vlc-region="panel"],
+      [data-skin="deep-sea"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(ellipse at 20% 120%, color-mix(in oklab, var(--vlc-accent) 20%, transparent), transparent 45%);
+      }
+      [data-skin="deep-sea"] button, [data-skin="deep-sea"] input, [data-skin="deep-sea"] select { color-scheme: dark light; }

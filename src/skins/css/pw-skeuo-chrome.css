@@ -1,0 +1,71 @@
+[data-skin="pw-skeuo-chrome"] { color-scheme: var(--vlc-color-scheme, dark); }
+  [data-skin="pw-skeuo-chrome"] [data-vlc-region] { overflow: visible; }
+  [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] button,
+  [data-skin="pw-skeuo-chrome"] [data-vlc-region="menu"] button,
+  [data-skin="pw-skeuo-chrome"] [data-vlc-region="title"] button {
+    transition: transform 120ms ease, background 160ms ease, box-shadow 220ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+  }
+  [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] [style*="vlc-font-mono"],
+  [data-skin="pw-skeuo-chrome"] .vlc-num { font-variant-numeric: tabular-nums; }
+  
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="title"],
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="menu"],
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] {
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 45%, rgba(0,0,0,0.20) 100%),
+          linear-gradient(180deg,#5c6068 0%,#3a3d42 100%) !important;
+        border-top: 1px solid rgba(255,255,255,0.14);
+        border-bottom: 1px solid rgba(0,0,0,0.5);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.4);
+      }
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] button {
+        background:
+          linear-gradient(180deg,#7a7e86 0%,#4a4e54 55%,#3a3d42 100%) !important;
+        border: 1px solid #1e2024 !important;
+        border-radius: 6px !important;
+        color: #f3f4f6 !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 1px 2px rgba(0,0,0,0.55);
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.55);
+      }
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] button:hover {
+        background: linear-gradient(180deg,#8a8e96 0%,#5a5e64 55%,#4a4d52 100%) !important;
+      }
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] button:active {
+        background: linear-gradient(180deg,#3a3d42 0%,#4a4e54 55%,#5a5e64 100%) !important;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+      }
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] button[title^="Play"],
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] button[title^="Pause"] {
+        background: linear-gradient(180deg,#7dd3fc 0%,#38bdf8 55%,#0284c7 100%) !important;
+        border: 1px solid #0369a1 !important;
+        color: #06263a !important;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), 0 2px 4px rgba(0,0,0,0.5);
+      }
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="panel"],
+      [data-skin="pw-skeuo-chrome"] [data-vlc-region="playlist"] {
+        background: linear-gradient(180deg,#4a4e54 0%,#2f3237 100%) !important;
+        border: 1px solid #1e2024 !important;
+        border-radius: 8px !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 12px 32px rgba(0,0,0,0.55) !important;
+        color: #f3f4f6;
+      }
+      [data-skin="pw-skeuo-chrome"] [data-vlc-track] {
+        height: 8px !important;
+        background: linear-gradient(180deg,#1e2024,#2c2f34) !important;
+        border: 1px solid #14161a !important;
+        border-radius: 999px !important;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.7);
+      }
+      [data-skin="pw-skeuo-chrome"] [data-vlc-played] { background: linear-gradient(180deg,#7dd3fc,#0284c7) !important; border-radius: 999px !important; box-shadow: inset 0 1px 0 rgba(255,255,255,0.4); }
+      [data-skin="pw-skeuo-chrome"] .vlc-num, [data-skin="pw-skeuo-chrome"] [data-vlc-region="control"] [style*="vlc-font-mono"] {
+        background: #0a1420; color: #7dd3fc;
+        padding: 2px 8px; border-radius: 3px;
+        border: 1px solid #000; box-shadow: inset 0 1px 4px rgba(0,0,0,0.8);
+        font-family: "Share Tech Mono", "VT323", monospace;
+        text-shadow: 0 0 6px rgba(125,211,252,0.7);
+      }

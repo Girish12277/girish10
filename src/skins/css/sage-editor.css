@@ -1,0 +1,9 @@
+[data-skin="sage-editor"] [data-vlc-region="title"],
+      [data-skin="sage-editor"] [data-vlc-region="menu"],
+      [data-skin="sage-editor"] [data-vlc-region="control"],
+      [data-skin="sage-editor"] [data-vlc-region="seek"],
+      [data-skin="sage-editor"] [data-vlc-region="panel"],
+      [data-skin="sage-editor"] [data-vlc-region="playlist"] {
+        background-image: radial-gradient(color-mix(in oklab, var(--vlc-accent) 18%, transparent) 1px, transparent 1.5px); background-size: 14px 14px;
+      }
+      [data-skin="sage-editor"] button, [data-skin="sage-editor"] input, [data-skin="sage-editor"] select { color-scheme: dark light; }

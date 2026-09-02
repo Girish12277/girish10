@@ -1,0 +1,8 @@
+[data-skin="winamp"] [data-vlc-region="control"],
+      [data-skin="winamp"] [data-vlc-region="title"],
+      [data-skin="winamp"] [data-vlc-region="seek"] {
+        border: 2px solid transparent;
+        border-top-color: #9c9c9c; border-left-color: #9c9c9c;
+        border-bottom-color: #2a2a2a; border-right-color: #2a2a2a;
+      }
+      [data-skin="winamp"] button { font-family: "VT323", "Press Start 2P", ui-monospace, monospace; letter-spacing: 0.5px; }

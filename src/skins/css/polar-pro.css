@@ -1,0 +1,9 @@
+[data-skin="polar-pro"] [data-vlc-region="title"],
+      [data-skin="polar-pro"] [data-vlc-region="menu"],
+      [data-skin="polar-pro"] [data-vlc-region="control"],
+      [data-skin="polar-pro"] [data-vlc-region="seek"],
+      [data-skin="polar-pro"] [data-vlc-region="panel"],
+      [data-skin="polar-pro"] [data-vlc-region="playlist"] {
+        backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      }
+      [data-skin="polar-pro"] button, [data-skin="polar-pro"] input, [data-skin="polar-pro"] select { color-scheme: dark light; }

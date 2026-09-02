@@ -1,0 +1,59 @@
+[data-skin="pw-holo-chrome"] { color-scheme: var(--vlc-color-scheme, dark); }
+  [data-skin="pw-holo-chrome"] [data-vlc-region] { overflow: visible; }
+  [data-skin="pw-holo-chrome"] [data-vlc-region="control"] button,
+  [data-skin="pw-holo-chrome"] [data-vlc-region="menu"] button,
+  [data-skin="pw-holo-chrome"] [data-vlc-region="title"] button {
+    transition: transform 120ms ease, background 160ms ease, box-shadow 220ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  [data-skin="pw-holo-chrome"] [data-vlc-region="control"] button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--vlc-accent-dim);
+  }
+  [data-skin="pw-holo-chrome"] [data-vlc-region="control"] [style*="vlc-font-mono"],
+  [data-skin="pw-holo-chrome"] .vlc-num { font-variant-numeric: tabular-nums; }
+  
+      @keyframes pw-holo-sheen { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+      [data-skin="pw-holo-chrome"] [data-vlc-region="title"],
+      [data-skin="pw-holo-chrome"] [data-vlc-region="menu"],
+      [data-skin="pw-holo-chrome"] [data-vlc-region="control"] {
+        background:
+          linear-gradient(90deg, rgba(240,171,252,0.14), rgba(165,243,252,0.14), rgba(253,230,138,0.14), rgba(196,181,253,0.14), rgba(240,171,252,0.14)),
+          #141420 !important;
+        background-size: 300% 100%;
+        animation: pw-holo-sheen 16s linear infinite;
+        border-bottom: 1px solid rgba(255,255,255,0.14);
+      }
+      [data-skin="pw-holo-chrome"] [data-vlc-region="control"] button {
+        background: rgba(255,255,255,0.04) !important;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+        color: #f8fafc !important;
+      }
+      [data-skin="pw-holo-chrome"] [data-vlc-region="control"] button:hover {
+        background:
+          linear-gradient(90deg,#f0abfc33,#a5f3fc33,#fde68a33,#c4b5fd33) !important;
+        border-color: rgba(255,255,255,0.28) !important;
+        color: #fff !important;
+      }
+      [data-skin="pw-holo-chrome"] [data-vlc-region="control"] button[title^="Play"],
+      [data-skin="pw-holo-chrome"] [data-vlc-region="control"] button[title^="Pause"] {
+        background: conic-gradient(from 0deg,#f0abfc,#a5f3fc,#fde68a,#c4b5fd,#f0abfc) !important;
+        color: #0b0b12 !important;
+        border: none !important;
+        border-radius: 999px !important;
+        box-shadow: 0 0 20px rgba(240,171,252,0.55), inset 0 1px 0 rgba(255,255,255,0.6);
+      }
+      [data-skin="pw-holo-chrome"] [data-vlc-region="panel"],
+      [data-skin="pw-holo-chrome"] [data-vlc-region="playlist"] {
+        background: #141420 !important;
+        border: 1px solid rgba(255,255,255,0.14) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 12px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.14) !important;
+        color: #f8fafc;
+      }
+      [data-skin="pw-holo-chrome"] [data-vlc-track] { height: 6px !important; background: rgba(255,255,255,0.10) !important; border-radius: 999px !important; }
+      [data-skin="pw-holo-chrome"] [data-vlc-played] {
+        background: linear-gradient(90deg,#f0abfc,#a5f3fc,#fde68a,#c4b5fd) !important;
+        background-size: 300% 100%;
+        animation: pw-holo-sheen 8s linear infinite;
+        border-radius: 999px !important;
+      }

@@ -1,0 +1,12 @@
+[data-skin="obsidian-pro"] {
+        font-family: var(--vlc-font-ui);
+        letter-spacing: -0.005em;
+        -webkit-font-smoothing: antialiased;
+        color-scheme: dark;
+      }
+      [data-skin="obsidian-pro"] [data-vlc-region="title"],
+      [data-skin="obsidian-pro"] [data-vlc-region="menu"] {
+        border-bottom: 1px solid var(--vlc-border-subtle);
+        background: linear-gradient(180deg, #16161B 0%, #101015 100%);
+      }
+      [data-skin="obsidian-pro"] .vlc-num { font-family: var(--vlc-font-mono); font-feature-settings: "tnum"; }

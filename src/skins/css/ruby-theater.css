@@ -1,0 +1,9 @@
+[data-skin="ruby-theater"] [data-vlc-region="title"],
+      [data-skin="ruby-theater"] [data-vlc-region="menu"],
+      [data-skin="ruby-theater"] [data-vlc-region="control"],
+      [data-skin="ruby-theater"] [data-vlc-region="seek"],
+      [data-skin="ruby-theater"] [data-vlc-region="panel"],
+      [data-skin="ruby-theater"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.22) 0 18px, transparent 18px 36px);
+      }
+      [data-skin="ruby-theater"] button, [data-skin="ruby-theater"] input, [data-skin="ruby-theater"] select { color-scheme: dark light; }

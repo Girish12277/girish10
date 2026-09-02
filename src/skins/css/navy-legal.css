@@ -1,0 +1,9 @@
+[data-skin="navy-legal"] [data-vlc-region="title"],
+      [data-skin="navy-legal"] [data-vlc-region="menu"],
+      [data-skin="navy-legal"] [data-vlc-region="control"],
+      [data-skin="navy-legal"] [data-vlc-region="seek"],
+      [data-skin="navy-legal"] [data-vlc-region="panel"],
+      [data-skin="navy-legal"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(90deg, color-mix(in oklab, var(--vlc-border-normal) 70%, transparent) 0 1px, transparent 1px 48px);
+      }
+      [data-skin="navy-legal"] button, [data-skin="navy-legal"] input, [data-skin="navy-legal"] select { color-scheme: dark light; }

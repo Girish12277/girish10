@@ -1,0 +1,8 @@
+[data-skin="thermo-print"] [data-vlc-region="title"],
+      [data-skin="thermo-print"] [data-vlc-region="menu"],
+      [data-skin="thermo-print"] [data-vlc-region="control"],
+      [data-skin="thermo-print"] [data-vlc-region="seek"],
+      [data-skin="thermo-print"] [data-vlc-region="panel"],
+      [data-skin="thermo-print"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 4px);
+      }

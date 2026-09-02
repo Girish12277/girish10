@@ -1,0 +1,9 @@
+[data-skin="glass-rain"] [data-vlc-region="title"],
+      [data-skin="glass-rain"] [data-vlc-region="menu"],
+      [data-skin="glass-rain"] [data-vlc-region="control"],
+      [data-skin="glass-rain"] [data-vlc-region="seek"],
+      [data-skin="glass-rain"] [data-vlc-region="panel"],
+      [data-skin="glass-rain"] [data-vlc-region="playlist"] {
+        background-image: repeating-linear-gradient(105deg, rgba(255,255,255,.07) 0 1px, transparent 1px 12px);
+      }
+      [data-skin="glass-rain"] button, [data-skin="glass-rain"] input, [data-skin="glass-rain"] select { color-scheme: dark light; }

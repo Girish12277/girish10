@@ -1,0 +1,9 @@
+[data-skin="paper-cut"] [data-vlc-region="title"],
+      [data-skin="paper-cut"] [data-vlc-region="menu"],
+      [data-skin="paper-cut"] [data-vlc-region="control"],
+      [data-skin="paper-cut"] [data-vlc-region="seek"],
+      [data-skin="paper-cut"] [data-vlc-region="panel"],
+      [data-skin="paper-cut"] [data-vlc-region="playlist"] {
+        background-image: linear-gradient(rgba(0,0,0,.035) 1px, transparent 1px); background-size: 100% 22px;
+      }
+      [data-skin="paper-cut"] button, [data-skin="paper-cut"] input, [data-skin="paper-cut"] select { color-scheme: dark light; }
