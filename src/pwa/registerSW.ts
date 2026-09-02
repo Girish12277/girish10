@@ -27,11 +27,6 @@ export function registerAppServiceWorker() {
   }
 
   navigator.serviceWorker.register("/sw.js").then((registration) => {
-    // Navigation preload cuts perceived cold-load latency by letting the
-    // browser kick off the HTML request in parallel with SW boot.
-    if ("navigationPreload" in registration) {
-      registration.navigationPreload.enable().catch(() => undefined);
-    }
     const notifyUpdate = () => window.dispatchEvent(new CustomEvent("vlc-update-ready"));
     if (registration.waiting) notifyUpdate();
     registration.update().catch(() => undefined);
