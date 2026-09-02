@@ -2,7 +2,7 @@
 // Workbox Service Worker Generator for 100% Offline PWA Reliability.
 // Emits a hardened sw.js precaching all static assets, JS chunks, CSS, HTML, and vendor files.
 import { generateSW } from "workbox-build";
-import { existsSync } from "node:fs";
+import { existsSync, cpSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
 
 const outDir = resolve("dist/client");
@@ -96,3 +96,17 @@ const { count, size, warnings } = await generateSW({
 
 if (warnings.length) for (const w of warnings) console.warn(`[build-sw] ${w}`);
 console.log(`[build-sw] precached ${count} files, ${(size / 1024 / 1024).toFixed(2)} MiB → dist/client/sw.js`);
+
+// ── Cloudflare Pages Advanced Mode Bundle Preparation ──
+// Nitro outputs the SSR worker to `dist/_worker.js`. Copy it into `dist/client/_worker.js`
+// so Cloudflare Pages handles SSR navigations to `/` without 404ing.
+const workerSrc = resolve("dist/_worker.js");
+const workerDest = resolve(outDir, "_worker.js");
+if (existsSync(workerSrc)) {
+  try {
+    cpSync(workerSrc, workerDest, { recursive: true });
+    console.log(`[build-sw] copied dist/_worker.js → dist/client/_worker.js for Cloudflare Pages SSR`);
+  } catch (err) {
+    console.warn(`[build-sw] failed to copy _worker.js`, err);
+  }
+}
