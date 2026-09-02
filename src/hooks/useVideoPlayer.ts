@@ -22,8 +22,6 @@ export function useVideoPlayer() {
   useEffect(() => { if (videoRef.current) { videoRef.current.volume = Math.min(1, volume); videoRef.current.muted = muted; } }, [volume, muted]);
   useEffect(() => { if (videoRef.current) videoRef.current.playbackRate = speed; }, [speed]);
 
-  const hlsRef = useRef<any>(null);
-
   // Source change
   const item = playlist[currentIndex];
   useEffect(() => {
@@ -38,41 +36,11 @@ export function useVideoPlayer() {
       } catch {/*noop*/}
     };
 
-    if (item.src.split("?")[0].toLowerCase().endsWith(".m3u8")) {
-      if (v.canPlayType("application/vnd.apple.mpegurl")) {
-        // Native HLS (Safari)
-        if (hlsRef.current) { hlsRef.current.destroy(); hlsRef.current = null; }
-        if (v.src !== item.src) {
-          v.src = item.src;
-          v.load();
-          applyPos();
-        }
-      } else {
-        // Dynamic import hls.js for Chrome/Firefox
-        import("hls.js").then(({ default: Hls }) => {
-          if (!Hls.isSupported()) return;
-          if (hlsRef.current) hlsRef.current.destroy();
-          const hls = new Hls({ startPosition: -1 });
-          hlsRef.current = hls;
-          hls.loadSource(item.src);
-          hls.attachMedia(v);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            applyPos();
-            if (usePlayerStore.getState().playing) v.play().catch(() => undefined);
-          });
-        });
-      }
-    } else {
-      // Standard video (MP4/WebM)
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
-        hlsRef.current = null;
-      }
-      if (v.src !== item.src) {
-        v.src = item.src;
-        v.load();
-        applyPos();
-      }
+    if (v.src !== item.src) {
+      v.src = item.src;
+      v.load();
+      applyPos();
+      if (usePlayerStore.getState().playing) v.play().catch(() => undefined);
     }
   }, [item]);
 

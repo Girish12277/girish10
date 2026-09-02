@@ -290,9 +290,12 @@ function Card({
         containIntrinsicSize: "96px 220px",
         cursor: "pointer",
         overflow: "hidden",
-        boxShadow: isPremium
-          ? "0 0 0 1px rgba(250,204,21,0.18), 0 8px 20px -8px rgba(250,204,21,0.30)"
-          : undefined,
+        boxShadow: active
+          ? "0 0 20px -2px var(--vlc-accent), 0 0 0 2px var(--vlc-accent)"
+          : isPremium
+            ? "0 0 0 1px rgba(250,204,21,0.18), 0 8px 20px -8px rgba(250,204,21,0.30)"
+            : undefined,
+        transition: "transform 200ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 200ms ease",
       } as React.CSSProperties}
     >
       {finalBadge && (

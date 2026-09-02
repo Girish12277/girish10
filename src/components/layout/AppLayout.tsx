@@ -15,14 +15,16 @@ import { SkinProvider } from "@/skins/SkinProvider";
 import { Provider as TooltipProvider } from "@radix-ui/react-tooltip";
 import { cursorCssFor } from "@/utils/cursorStyles";
 
-import { PlaylistPanel } from "@/components/playlist/PlaylistPanel";
-import { EffectsPanel } from "@/components/panels/EffectsPanel";
-import { PreferencesPanel } from "@/components/panels/PreferencesPanel";
-import { CodecInfoPanel } from "@/components/panels/CodecInfoPanel";
-import { AllDialogs as Dialogs } from "@/components/dialogs/Dialogs";
-import { CommandPalette } from "@/components/dialogs/CommandPalette";
-import { FeatureHost } from "@/features/FeatureHost";
-import { StudyHub } from "@/components/study/StudyHub";
+// ── Lazy panels: none of these are needed at first paint. Each chunk loads
+// on demand when the user opens the panel, keeping the initial bundle lean.
+const PlaylistPanel = lazy(() => import("@/components/playlist/PlaylistPanel").then((m) => ({ default: m.PlaylistPanel })));
+const EffectsPanel = lazy(() => import("@/components/panels/EffectsPanel").then((m) => ({ default: m.EffectsPanel })));
+const PreferencesPanel = lazy(() => import("@/components/panels/PreferencesPanel").then((m) => ({ default: m.PreferencesPanel })));
+const CodecInfoPanel = lazy(() => import("@/components/panels/CodecInfoPanel").then((m) => ({ default: m.CodecInfoPanel })));
+const Dialogs = lazy(() => import("@/components/dialogs/Dialogs").then((m) => ({ default: m.AllDialogs })));
+const CommandPalette = lazy(() => import("@/components/dialogs/CommandPalette").then((m) => ({ default: m.CommandPalette })));
+const FeatureHost = lazy(() => import("@/features/FeatureHost").then((m) => ({ default: m.FeatureHost })));
+const StudyHub = lazy(() => import("@/components/study/StudyHub").then((m) => ({ default: m.StudyHub })));
 // Headless engines: always live, but pulled out of the initial bundle so first
 // paint doesn't pay for the study timer or the audio graph.
 const StudyEngine = lazy(() => import("@/components/study/StudyEngine").then((m) => ({ default: m.StudyEngine })));
@@ -31,7 +33,6 @@ import { useAppFeel } from "@/hooks/useAppFeel";
 import { PanelErrorBoundary } from "@/components/system/PanelErrorBoundary";
 import { useAVSync } from "@/hooks/useAVSync";
 import { attachSubtitleFile } from "@/utils/subtitles";
-import { PanelSkeleton, DialogSkeleton } from "@/components/ui/Skeleton";
 
 const AmbientMusic = lazy(() => import("@/components/music/AmbientMusic").then((m) => ({ default: m.AmbientMusic })));
 
@@ -44,6 +45,19 @@ export function AppLayout() {
   const fullscreen = usePlayerStore((s) => s.fullscreen);
   const set = usePlayerStore((s) => s.set);
   const [updateReady, setUpdateReady] = useState(false);
+
+  // Lazy-panel open state — drives conditional mounting so chunks load on demand
+  const playlistOpen = usePlayerStore((s) => s.playlistOpen);
+  const effectsOpen = usePlayerStore((s) => s.effectsOpen);
+  const preferencesOpen = usePlayerStore((s) => s.preferencesOpen);
+  const codecOpen = usePlayerStore((s) => s.codecOpen);
+  const networkOpen = usePlayerStore((s) => s.networkOpen);
+  const jumpOpen = usePlayerStore((s) => s.jumpOpen);
+  const helpOpen = usePlayerStore((s) => s.helpOpen);
+  const commandPaletteOpen = usePlayerStore((s) => s.commandPaletteOpen);
+  const openFeatureId = usePlayerStore((s) => s.openFeatureId);
+  const ambientOpen = usePlayerStore((s) => s.ambientOpen);
+  const anyDialogOpen = networkOpen || jumpOpen || helpOpen;
 
   // Persisted settings are applied only after hydration, so the first client
   // render matches the SSR markup exactly.
@@ -180,7 +194,7 @@ export function AppLayout() {
   return (
     <SkinProvider>
       <TooltipProvider delayDuration={250} skipDelayDuration={0}>
-        <div className="flex flex-col h-screen w-screen relative" onMouseLeave={autoHide.onAppMouseLeave} style={{ background: "var(--vlc-bg-base)", cursor: cursorStyle }}>
+        <div className="vlc-app-entrance flex flex-col h-screen w-screen relative" onMouseLeave={autoHide.onAppMouseLeave} style={{ background: "var(--vlc-bg-base)", cursor: cursorStyle }}>
           <a href="#vlc-main-stage" className="sr-only focus:not-sr-only focus:absolute focus:p-3 focus:font-bold focus:z-[9999]" style={{ top: 12, left: 12, background: "var(--vlc-bg-elevated)", color: "var(--vlc-accent)", borderRadius: "var(--vlc-radius-md)", outline: "2px solid var(--vlc-accent)", outlineOffset: 2 }}>
             Skip to main content
           </a>
@@ -213,15 +227,17 @@ export function AppLayout() {
           {overlayChrome && bottomChrome}
 
           <PanelErrorBoundary name="App panels">
-            <PlaylistPanel />
-            <EffectsPanel />
-            <PreferencesPanel />
-            <CodecInfoPanel />
-            <Dialogs />
-            <CommandPalette />
-            <FeatureHost />
-            <StudyHub />
-            <Suspense fallback={null}><AmbientMusic /></Suspense>
+            <Suspense fallback={null}>
+              {playlistOpen && <PlaylistPanel />}
+              {effectsOpen && <EffectsPanel />}
+              {preferencesOpen && <PreferencesPanel />}
+              {codecOpen && <CodecInfoPanel />}
+              {anyDialogOpen && <Dialogs />}
+              {commandPaletteOpen && <CommandPalette />}
+              {openFeatureId && <FeatureHost />}
+              <StudyHub />
+              {ambientOpen && <AmbientMusic />}
+            </Suspense>
           </PanelErrorBoundary>
           <Suspense fallback={null}>
             <StudyEngine />

@@ -20,9 +20,20 @@ export default defineConfig({
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            if (id.includes("src/skins/") && id.endsWith("Heroes.ts")) {
+            // ── Vendor splits ──
+            // Keep heavy libraries out of the initial bundle. They load
+            // only when a panel/feature that uses them is first opened.
+            if (id.includes("node_modules/framer-motion")) return "vendor-motion";
+            if (id.includes("node_modules/lucide-react"))  return "vendor-icons";
+            if (id.includes("node_modules/@radix-ui"))     return "vendor-radix";
+
+            // ── App-internal splits ──
+            if (id.includes("src/skins/") && (id.endsWith("Heroes.ts") || id.endsWith("registry.ts"))) {
               return "skin-catalog";
             }
+            if (id.includes("src/skins/godMode.ts"))     return "god-mode";
+            if (id.includes("src/features/registry.ts")) return "feature-registry";
+            if (id.includes("src/store/studyStore.ts"))   return "study-store";
           },
         },
       },

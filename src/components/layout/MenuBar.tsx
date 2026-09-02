@@ -3,36 +3,15 @@ import { MenuDropdown, type MenuItemDef } from "@/components/menubar/MenuDropdow
 import { usePlayerStore } from "@/store/playerStore";
 import { videoRef } from "@/hooks/useVideoPlayer";
 import { isVisible } from "@/utils/uiCustomization";
-import type { FeatureDef } from "@/features/registry";
+import { FEATURES } from "@/features/registry";
 import { useStudyStore } from "@/store/studyStore";
 import { useMediaTracks, selectTextTrack, selectAudioTrack, selectVideoTrack } from "@/hooks/useMediaTracks";
 
 /**
  * MenuBar — VLC-style menu strip.
- *
- * Perf rationale:
- *  - Subscribe ONLY to the store slices used inside menu items. The previous
- *    implementation called usePlayerStore() with no selector, which made the
- *    bar re-render on every OSD push, buffered tick and rAF-driven update.
- *    Heavy re-renders during a click could swallow the click event and make
- *    the dropdown feel "dead" on first press.
- *  - Build menu definitions inside useMemo so child MenuDropdown props are
- *    referentially stable and don't re-attach document mousedown listeners
- *    on every parent render.
  */
 export function MenuBar() {
   const [open, setOpen] = useState<string | null>(null);
-  // The mini-app registry carries 180 entries plus 180 dynamic-import stubs.
-  // Loading it after hydration keeps it out of the first-paint chunk; the
-  // Mini Apps menu simply shows a placeholder for the first tick.
-  const [features, setFeatures] = useState<FeatureDef[]>([]);
-  useEffect(() => {
-    let cancelled = false;
-    const load = () => import("@/features/registry").then((m) => { if (!cancelled) setFeatures(m.FEATURES); }).catch(() => undefined);
-    const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
-    const handle = ric ? ric(load, { timeout: 2000 }) : window.setTimeout(load, 300);
-    return () => { cancelled = true; if (!ric) window.clearTimeout(handle); };
-  }, []);
 
   // Granular selectors — each one re-renders MenuBar only when its slice changes.
   const playing = usePlayerStore((s) => s.playing);
@@ -163,8 +142,6 @@ export function MenuBar() {
       { label: "Track Synchronization...", onSelect: () => set({ effectsOpen: true }) },
       { type: "separator" },
       { label: "Codec Information...", shortcut: "Ctrl+J", onSelect: () => set({ codecOpen: true }) },
-      { type: "separator" },
-      { label: "Scientific Calculator", shortcut: "Ctrl+Alt+C", onSelect: () => set({ openFeatureId: "scicalc" }) },
       { label: "Background Music", onSelect: () => set({ ambientOpen: true }) },
       { type: "separator" },
       { label: "Preferences...", shortcut: "Ctrl+P", onSelect: () => set({ preferencesOpen: true }) },
@@ -202,26 +179,17 @@ export function MenuBar() {
     ];
     void studyApi; // touch to keep import live for future expansion
 
-    const groupBy = <T, K extends string>(arr: T[], key: (x: T) => K): Record<K, T[]> => {
-      const o = {} as Record<K, T[]>;
-      arr.forEach((x) => { const k = key(x); (o[k] ||= []).push(x); });
-      return o;
-    };
-    const grouped = groupBy(features, (f) => f.category);
-    const miniApps: MenuItemDef[] = (Object.keys(grouped) as Array<keyof typeof grouped>).flatMap<MenuItemDef>((cat, i) => {
-      const items: MenuItemDef[] = grouped[cat].map((f) => ({
-        label: f.title, onSelect: () => set({ openFeatureId: f.id }),
-      }));
-      const sep: MenuItemDef[] = i === 0 ? [] : [{ type: "separator" }];
-      return [...sep, { type: "submenu", label: cat, submenu: items }];
-    });
+    const miniApps: MenuItemDef[] = FEATURES.map((f) => ({
+      label: f.title,
+      onSelect: () => set({ openFeatureId: f.id }),
+    }));
 
     return [
       ["Media", media, "menu.media"], ["Playback", playback, "menu.playback"], ["Audio", audio, "menu.audio"], ["Video", video, "menu.video"],
       ["Subtitle", subtitle, "menu.subtitle"], ["Tools", tools, "menu.tools"], ["View", view, "menu.view"],
       ["Mini Apps", miniApps, "menu.miniapps"], ["Study", study, "menu.study"], ["Help", help, "menu.help"],
     ] as const;
-  }, [features, playing, playlist, speed, repeat, random, muted, volume, sync, aspectRatio, filters, playlistOpen, karaoke, tracks, set, loadIndex, next, prev, setSpeed]);
+  }, [playing, playlist, speed, repeat, random, muted, volume, sync, aspectRatio, filters, playlistOpen, karaoke, tracks, set, loadIndex, next, prev, setSpeed]);
 
   const vis = usePlayerStore((s) => s.uiVisibility);
 

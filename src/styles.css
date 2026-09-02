@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
@@ -239,6 +239,49 @@
   --vlc-border-normal: rgba(255, 255, 255, 0.32);
   --vlc-border-strong: rgba(255, 255, 255, 0.48);
 }
+
+/* Micro-Interaction Icon Animations */
+@keyframes icon-flicker {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.6)); }
+  50% { transform: scale(1.15) rotate(4deg); opacity: 0.9; filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.9)); }
+}
+
+@keyframes audio-ripple {
+  0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.5); }
+  70% { box-shadow: 0 0 0 6px rgba(34, 211, 238, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+}
+
+.animate-icon-flicker { animation: icon-flicker 2s ease-in-out infinite; }
+.animate-audio-ripple { animation: audio-ripple 1.8s infinite; }
+
+/* Custom Sleek Glass Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--vlc-text-primary) 18%, transparent);
+  border-radius: 9999px;
+  transition: background 200ms ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--vlc-accent) 60%, transparent);
+}
+
+.glow-accent {
+  box-shadow: 0 0 16px -2px var(--vlc-accent);
+}
+.press-scale {
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.press-scale:active {
+  transform: scale(0.92);
+}
+
 @media (prefers-contrast: more) {
   :root {
     --vlc-text-secondary: rgba(243, 243, 243, 0.88);
@@ -435,6 +478,7 @@ input[type="range"].vlc-eq {
   writing-mode: vertical-lr;
   direction: rtl;
   -webkit-appearance: slider-vertical;
+  appearance: slider-vertical;
   width: 16px;
   height: 120px;
 }
@@ -797,4 +841,35 @@ input[type="range"].vlc-eq {
   .vlc-empty-card:hover { transform: none; }
   .vlc-tooltip-enter { animation-duration: 0.01ms; }
   .vlc-bookmark-marker:hover { transform: translateX(-50%) !important; box-shadow: none !important; }
+  .vlc-app-entrance { animation: none; }
+}
+
+/* ------------------------------------------------------------------
+ * Phase 11 — Performance & GPU Acceleration
+ * ------------------------------------------------------------------ */
+
+/* App entrance: subtle bloom effect on first paint */
+@keyframes vlc-app-entrance {
+  from { opacity: 0; filter: blur(4px); transform: scale(0.985); }
+  to   { opacity: 1; filter: blur(0);   transform: scale(1); }
+}
+.vlc-app-entrance {
+  animation: vlc-app-entrance 450ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+}
+
+/* GPU-accelerated seekbar thumb — avoids layout thrashing during scrub */
+[data-vlc-region="seek"] [data-vlc-track] > .rounded-full {
+  will-change: transform, box-shadow;
+}
+
+/* GPU-accelerated chrome slide (overlay mode) */
+[data-vlc-region="control"],
+[data-vlc-region="title"] {
+  will-change: transform, opacity;
+}
+
+/* Contain off-screen lazy panels to prevent unnecessary paint */
+.vlc-floating-panel {
+  contain: layout style paint;
+  content-visibility: auto;
 }

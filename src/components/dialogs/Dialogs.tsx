@@ -3,47 +3,13 @@ import { usePlayerStore } from "@/store/playerStore";
 import { videoRef } from "@/hooks/useVideoPlayer";
 import { DialogShell } from "./DialogShell";
 
-// Track active HLS instance so we can tear it down on source change.
-let activeHls: { destroy: () => void } | null = null;
-
-const isHls = (url: string) => /\.m3u8($|\?)/i.test(url);
 const isYouTube = (url: string) => /(?:youtube\.com|youtu\.be)/i.test(url);
 
 async function attachStream(url: string): Promise<{ ok: true } | { ok: false; reason: string }> {
   const v = videoRef.current;
   if (!v) return { ok: false, reason: "Player not ready" };
 
-  // Tear down any prior HLS instance
-  if (activeHls) { try { activeHls.destroy(); } catch { /*noop*/ } activeHls = null; }
   v.crossOrigin = "anonymous";
-
-  if (isHls(url)) {
-    // Native HLS (Safari) — feed direct
-    if (v.canPlayType("application/vnd.apple.mpegurl")) {
-      v.src = url;
-      v.load();
-      try { await v.play(); } catch { /* autoplay blocked */ }
-      return { ok: true };
-    }
-    // hls.js fallback for Chrome/Firefox
-    try {
-      const Hls = (await import("hls.js")).default;
-      if (!Hls.isSupported()) return { ok: false, reason: "HLS not supported in this browser" };
-      const hls = new Hls({ enableWorker: true, lowLatencyMode: true });
-      activeHls = hls;
-      hls.loadSource(url);
-      hls.attachMedia(v);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => { v.play().catch(() => undefined); });
-      hls.on(Hls.Events.ERROR, (_e, data) => {
-        if (data.fatal) usePlayerStore.getState().pushOSD(`HLS error: ${data.type}`);
-      });
-      return { ok: true };
-    } catch (e) {
-      return { ok: false, reason: "Failed to load HLS engine" };
-    }
-  }
-
-  // Plain HTTP(S) progressive stream (mp4, webm, ogg, etc.)
   v.src = url;
   v.load();
   const playPromise = new Promise<void>((resolve, reject) => {
@@ -71,7 +37,7 @@ export function NetworkDialog() {
     setErr(null);
     const trimmed = url.trim();
     if (!trimmed) { setErr("Enter a URL"); return; }
-    if (isYouTube(trimmed)) { setErr("YouTube URLs can't be streamed directly — browsers and YouTube ToS block it. Paste a direct .mp4 / .m3u8 / .webm URL instead."); return; }
+    if (isYouTube(trimmed)) { setErr("YouTube URLs can't be streamed directly — browsers and YouTube ToS block it. Paste a direct .mp4 / .webm URL instead."); return; }
     if (!/^https?:\/\//i.test(trimmed) && !/^blob:/i.test(trimmed)) { setErr("Only http(s) streams are supported (rtsp/mms need a proxy)."); return; }
 
     setBusy(true);
@@ -91,13 +57,13 @@ export function NetworkDialog() {
   return (
     <Modal title="Open Media — Network Stream" onClose={() => set({ networkOpen: false })} width={520}>
       <div className="text-[13px] mb-3" style={{ color: "var(--vlc-text-secondary)" }}>
-        Direct stream URL — supports <strong>HTTP(S) progressive</strong> (mp4, webm, ogg) and <strong>HLS</strong> (.m3u8). RTSP/MMS and YouTube are not supported in browsers.
+        Direct stream URL — supports <strong>HTTP(S) progressive</strong> (mp4, webm, ogg). RTSP/MMS and YouTube are not supported in browsers.
       </div>
       <input
         value={url}
         onChange={(e) => { setUrl(e.target.value); setErr(null); }}
         onKeyDown={(e) => { if (e.key === "Enter") play(); }}
-        placeholder="https://example.com/stream.m3u8"
+        placeholder="https://example.com/video.mp4"
         className="vlc-input w-full px-3 py-2 rounded-md"
         style={{ fontFamily: "var(--vlc-font-mono)", fontSize: 13, height: 44 }}
         autoFocus
@@ -105,7 +71,7 @@ export function NetworkDialog() {
       />
       {err && <div className="mt-2 text-[12px] font-medium" style={{ color: "var(--vlc-warning)" }}>{err}</div>}
       <div className="mt-3 text-[12px]" style={{ color: "var(--vlc-text-ghost)" }}>
-        Tip: try <span className="vlc-num px-1 py-0.5 rounded" style={{ background: "var(--vlc-bg-sunken)", border: "1px solid var(--vlc-border-subtle)", color: "var(--vlc-text-secondary)" }}>https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8</span>
+        Tip: try <span className="vlc-num px-1 py-0.5 rounded" style={{ background: "var(--vlc-bg-sunken)", border: "1px solid var(--vlc-border-subtle)", color: "var(--vlc-text-secondary)" }}>https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4</span>
       </div>
       <div className="flex gap-2 mt-5 justify-end">
         <button onClick={() => set({ networkOpen: false })} className="vlc-btn-dialog px-4 py-2 text-[13px] font-medium rounded-md" style={{ background: "var(--vlc-bg-sunken)", color: "var(--vlc-text-primary)", border: "1px solid var(--vlc-border-normal)" }}>Cancel</button>

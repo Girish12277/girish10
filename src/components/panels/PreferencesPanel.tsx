@@ -97,46 +97,28 @@ function AppearancePrefs() {
   const themeName = usePlayerStore((s) => s.themeName);
   const customVars = usePlayerStore((s) => s.customVars);
   const applyTheme = usePlayerStore((s) => s.applyTheme);
-  const [query, setQuery] = useState("");
-  const q = query.trim().toLowerCase();
-  const visibleThemes = q ? THEMES.filter((t) => t.name.toLowerCase().includes(q)) : THEMES;
   return (
     <div>
-      <div className="flex items-center justify-between mb-3 gap-3">
-        <h3 className="text-[12px]" style={{ color: "var(--vlc-text-secondary)" }}>
-          Theme presets <span style={{ color: "var(--vlc-text-ghost)" }}>· {visibleThemes.length} of {THEMES.length}</span>
-        </h3>
-        <input
-          type="text"
-          placeholder="Search themes…"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="text-[12px] px-2 py-1 rounded w-44"
-          style={{ background: "var(--vlc-bg-sunken)", color: "var(--vlc-text-primary)", border: "1px solid var(--vlc-border-normal)" }}
-        />
-      </div>
-      <div
-        className="grid grid-cols-3 gap-3 mb-5 overflow-y-auto pr-1"
-        style={{ maxHeight: 420 }}
-      >
-        {visibleThemes.map((t) => (
-          <button key={t.name} onClick={() => applyThemeByName(t.name, applyTheme, customVars)}
-            className="rounded p-2 text-left"
+      <h3 className="text-[12px] mb-3" style={{ color: "var(--vlc-text-secondary)" }}>
+        Base Theme Presets
+      </h3>
+      <div className="grid grid-cols-4 gap-3 mb-5">
+        {THEMES.map((t) => (
+          <button
+            key={t.name}
+            onClick={() => applyThemeByName(t.name, applyTheme, customVars)}
+            className="rounded p-2.5 text-left transition-all press"
             style={{
-              height: 84,
+              height: 64,
               background: t.vars["--vlc-bg-base"] ?? "var(--vlc-bg-base)",
               border: themeName === t.name ? "2px solid var(--vlc-accent)" : "1px solid var(--vlc-border-normal)",
-              // Skip layout/paint for off-screen tiles — keeps scrolling at 60fps
-              // regardless of total theme count.
-              contentVisibility: "auto",
-              containIntrinsicSize: "84px 100px",
-            } as CSSProperties}>
-            <div className="flex flex-col gap-1">
-              <div style={{ height: 8, background: t.vars["--vlc-bg-sunken"] ?? "var(--vlc-bg-sunken)", borderRadius: 2 }} />
-              <div style={{ height: 28, background: t.vars["--vlc-bg-surface"] ?? "var(--vlc-bg-surface)", borderRadius: 2, position: "relative" }}>
-                <div style={{ position: "absolute", left: 4, bottom: 4, height: 3, width: "60%", background: t.vars["--vlc-accent"] ?? "var(--vlc-accent)", borderRadius: 2 }} />
+            }}
+          >
+            <div className="flex flex-col gap-1.5 justify-between h-full">
+              <div style={{ height: 16, background: t.vars["--vlc-bg-surface"] ?? "var(--vlc-bg-surface)", borderRadius: 4, position: "relative" }}>
+                <div style={{ position: "absolute", left: 4, bottom: 4, height: 3, width: "50%", background: t.vars["--vlc-accent"] ?? "var(--vlc-accent)", borderRadius: 2 }} />
               </div>
-              <div className="text-[11px] truncate" style={{ color: t.vars["--vlc-text-primary"] ?? "var(--vlc-text-primary)" }}>{t.name}</div>
+              <div className="text-[11px] font-medium truncate" style={{ color: t.vars["--vlc-text-primary"] ?? "var(--vlc-text-primary)" }}>{t.name}</div>
             </div>
           </button>
         ))}

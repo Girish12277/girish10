@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { usePlayerStore } from "@/store/playerStore";
 import { useShallow } from "zustand/react/shallow";
-import { motion, AnimatePresence } from "framer-motion";
 import { videoRef, currentTimeRef } from "@/hooks/useVideoPlayer";
+import { usePlaybackTicker } from "@/hooks/usePlaybackTicker";
 import { formatTime } from "@/utils/formatTime";
 import { srcKey } from "@/utils/srcKey";
 import { isVisible } from "@/utils/uiCustomization";
@@ -44,24 +44,19 @@ export function SeekBar() {
   const vis = usePlayerStore((s) => s.uiVisibility);
   const v = (id: string) => isVisible(vis, id);
 
+  const now = usePlaybackTicker();
+
   useEffect(() => {
-    let raf = 0;
-    const loop = () => {
-      const v = videoRef.current;
-      if (v && v.duration > 0) {
-        currentTimeRef.current = v.currentTime;
-        const pct = (v.currentTime / v.duration) * 100;
-        if (playedRef.current) playedRef.current.style.width = `${pct}%`;
-        if (thumbRef.current) thumbRef.current.style.left = `${pct}%`;
-        if (bufferedRef.current && v.duration) bufferedRef.current.style.width = `${(buffered / v.duration) * 100}%`;
-        const a = ab.a; const b = ab.b;
-        if (a !== null && b !== null && v.currentTime >= b) v.currentTime = a;
-      }
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
-  }, [buffered, ab.a, ab.b]);
+    const v = videoRef.current;
+    if (v && v.duration > 0) {
+      const pct = (now / v.duration) * 100;
+      if (playedRef.current) playedRef.current.style.width = `${pct}%`;
+      if (thumbRef.current) thumbRef.current.style.left = `${pct}%`;
+      if (bufferedRef.current && v.duration) bufferedRef.current.style.width = `${(buffered / v.duration) * 100}%`;
+      const a = ab.a; const b = ab.b;
+      if (a !== null && b !== null && now >= b) v.currentTime = a;
+    }
+  }, [now, buffered, ab.a, ab.b]);
 
   const seekFromX = (clientX: number) => {
     const rect = trackRef.current?.getBoundingClientRect(); if (!rect) return;
@@ -200,20 +195,18 @@ export function SeekBar() {
           className="absolute top-0 left-0 h-full pointer-events-none"
           style={{ background: "var(--vlc-seek-buffered)", borderRadius: "var(--vlc-radius-full)" }}
         />}
-        <motion.div
+        <div
           ref={playedRef}
           data-vlc-played
-          animate={{
-            boxShadow: active 
-              ? "0 0 20px color-mix(in oklab, var(--vlc-accent) 75%, transparent), 0 0 6px color-mix(in oklab, var(--vlc-accent) 90%, transparent)" 
-              : "0 0 10px color-mix(in oklab, var(--vlc-accent) 30%, transparent)"
-          }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="absolute top-0 left-0 h-full pointer-events-none"
           style={{
             background: "linear-gradient(90deg, var(--vlc-accent-active) 0%, var(--vlc-accent) 60%, var(--vlc-accent-hover) 100%)",
             borderRadius: "var(--vlc-radius-full)",
             width: 0,
+            boxShadow: active
+              ? "0 0 20px color-mix(in oklab, var(--vlc-accent) 75%, transparent), 0 0 6px color-mix(in oklab, var(--vlc-accent) 90%, transparent)"
+              : "0 0 10px color-mix(in oklab, var(--vlc-accent) 30%, transparent)",
+            transition: "box-shadow 300ms cubic-bezier(0.05, 0.7, 0.1, 1)",
           }}
         />
 
@@ -268,77 +261,67 @@ export function SeekBar() {
           />
         ))}
 
-        {v("seek.thumb") && <motion.div
+        {v("seek.thumb") && <div
           ref={thumbRef}
-          animate={{
-            scale: thumbScale,
-            opacity: active ? 1 : 0.8,
-            boxShadow: dragging
-              ? "0 0 0 6px color-mix(in oklab, var(--vlc-accent) 25%, transparent), var(--vlc-shadow-2)"
-              : active
-                ? "0 0 0 4px color-mix(in oklab, var(--vlc-accent) 15%, transparent), var(--vlc-shadow-1)"
-                : "var(--vlc-shadow-1)",
-          }}
-          transition={{ type: "spring", stiffness: 450, damping: 25 }}
           className="absolute top-1/2 rounded-full pointer-events-none"
           style={{
             width: 14,
             height: 14,
             background: "var(--vlc-seek-thumb)",
             left: 0,
-            x: "-50%",
-            y: "-50%",
+            transform: `translate(-50%, -50%) scale(${thumbScale})`,
+            opacity: active ? 1 : 0.8,
+            boxShadow: dragging
+              ? "0 0 0 6px color-mix(in oklab, var(--vlc-accent) 25%, transparent), var(--vlc-shadow-2)"
+              : active
+                ? "0 0 0 4px color-mix(in oklab, var(--vlc-accent) 15%, transparent), var(--vlc-shadow-1)"
+                : "var(--vlc-shadow-1)",
+            transition: "transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 200ms ease, box-shadow 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
           }}
         />}
       </div>}
 
       {/* Hover preview tooltip */}
-      <AnimatePresence>
-        {v("seek.hoverPreview") && hover && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 4, scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
-            className="absolute pointer-events-none"
+      {v("seek.hoverPreview") && hover && (
+        <div
+          className="vlc-tooltip-enter absolute pointer-events-none"
+          style={{
+            bottom: 36,
+            left: Math.max(48, Math.min(hover.x + 14, (trackRef.current?.clientWidth ?? 0) - 48)),
+            transform: "translateX(-50%)",
+            zIndex: 40,
+          }}
+        >
+          <div
+            className="glass-panel flex items-center gap-1.5 px-2.5 py-1.5 rounded-md"
             style={{
-              bottom: 36,
-              left: Math.max(48, Math.min(hover.x + 14, (trackRef.current?.clientWidth ?? 0) - 48)),
-              transform: "translateX(-50%)",
-              zIndex: 40,
+              border: "1px solid var(--vlc-border-normal)",
+              boxShadow: "var(--vlc-shadow-3)",
             }}
           >
-            <div
-              className="glass-panel flex items-center gap-1.5 px-2.5 py-1.5 rounded-md"
-              style={{
-                border: "1px solid var(--vlc-border-normal)",
-                boxShadow: "var(--vlc-shadow-3)",
-              }}
-            >
-              <span
-                className="inline-block rounded-full"
-                style={{ width: 6, height: 6, background: "var(--vlc-accent)", boxShadow: "0 0 8px color-mix(in oklab, var(--vlc-accent) 80%, transparent)" }}
-              />
-              <span className="vlc-num text-[12px] font-semibold" style={{ color: "var(--vlc-text-primary)" }}>
-                {formatTime(hover.t)}
-              </span>
-            </div>
-            {/* tooltip pointer */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2"
-              style={{
-                bottom: -5,
-                width: 10,
-                height: 10,
-                background: "var(--vlc-bg-elevated)",
-                borderRight: "1px solid var(--vlc-border-normal)",
-                borderBottom: "1px solid var(--vlc-border-normal)",
-                transform: "translateX(-50%) rotate(45deg)",
-              }}
+            <span
+              className="inline-block rounded-full"
+              style={{ width: 6, height: 6, background: "var(--vlc-accent)", boxShadow: "0 0 8px color-mix(in oklab, var(--vlc-accent) 80%, transparent)" }}
             />
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <span className="vlc-num text-[12px] font-semibold" style={{ color: "var(--vlc-text-primary)" }}>
+              {formatTime(hover.t)}
+            </span>
+          </div>
+          {/* tooltip pointer */}
+          <div
+            className="absolute left-1/2 -translate-x-1/2"
+            style={{
+              bottom: -5,
+              width: 10,
+              height: 10,
+              background: "var(--vlc-bg-elevated)",
+              borderRight: "1px solid var(--vlc-border-normal)",
+              borderBottom: "1px solid var(--vlc-border-normal)",
+              transform: "translateX(-50%) rotate(45deg)",
+            }}
+          />
+        </div>
+      )}
 
       {menu && (
         <div

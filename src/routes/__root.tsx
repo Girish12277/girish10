@@ -68,6 +68,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+import { OfflineStatusIndicator } from "@/components/layout/OfflineStatusIndicator";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -86,6 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/96d46707-d0b5-40af-ab7e-45c172a7a413" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/96d46707-d0b5-40af-ab7e-45c172a7a413" },
       { name: "theme-color", content: "#1E1E1E" },
+      { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { name: "apple-mobile-web-app-title", content: "VLC Web" },
@@ -155,6 +158,7 @@ function RootComponent() {
       if (cancelled) return;
       reg.registerAppServiceWorker();
     }).catch(() => undefined);
+    import("@/pwa/warmCache").then((m) => { if (!cancelled) m.warmFeatureCache(); }).catch(() => undefined);
     import("@/utils/vitals").then((v) => { if (!cancelled) v.startVitals(); }).catch(() => undefined);
     return () => { cancelled = true; };
   }, []);
@@ -163,6 +167,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <OfflineStatusIndicator />
     </QueryClientProvider>
   );
 }

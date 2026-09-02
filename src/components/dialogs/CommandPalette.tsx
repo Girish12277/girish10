@@ -3,10 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePlayerStore } from "@/store/playerStore";
 import { videoRef } from "@/hooks/useVideoPlayer";
 import { srcKey } from "@/utils/srcKey";
-import { FEATURES } from "@/features/registry";
+import type { FeatureDef } from "@/features/registry";
 import { Search, Loader2, Sparkles, Clock, History, Keyboard } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getSkinCatalog, resolveSkin } from "@/skins/registry";
 
 type Section = "Playback" | "Files" | "View" | "Skins" | "Customize" | "Mini-Apps";
 type Cmd = { id: string; label: string; hint?: string; section: Section; run: () => void; icon?: React.ReactNode };
@@ -59,9 +58,17 @@ export function CommandPalette() {
   const [recents, setRecents] = useState<string[]>(loadRecents);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  // Dynamic import: features/registry and skins/registry are NOT statically
+  // imported so Vite can code-split them out of the initial bundle.
+  const { data: features = [] } = useQuery({
+    queryKey: ["feature-list"],
+    queryFn: () => import("@/features/registry").then((m) => m.FEATURES),
+    staleTime: Infinity,
+    enabled: open,
+  });
   const { data: skins = [] } = useQuery({
     queryKey: ["skin-catalog"],
-    queryFn: getSkinCatalog,
+    queryFn: () => import("@/skins/registry").then((m) => m.getSkinCatalog()),
     staleTime: Infinity,
     enabled: open,
   });
@@ -126,7 +133,7 @@ export function CommandPalette() {
       { id: "help", label: "Keyboard Shortcuts", hint: "?", section: "Customize", run: wrap("help", () => s.set({ helpOpen: true })) },
     ];
 
-    FEATURES.forEach((f) => list.push({
+    features.forEach((f: FeatureDef) => list.push({
       id: `feat-${f.id}`,
       label: `${f.title}`,
       hint: f.category,
@@ -143,7 +150,7 @@ export function CommandPalette() {
     }));
 
     return list;
-  }, [set, recents, skins]);
+  }, [set, recents, skins, features]);
 
   /** Rank with fuzzy score, group by section, preserve recent ordering when query empty. */
   const grouped = useMemo(() => {
@@ -194,6 +201,7 @@ export function CommandPalette() {
     
     (async () => {
       try {
+        const { resolveSkin } = await import("@/skins/registry");
         const resolved = await resolveSkin(skinId);
         if (cancelled) return;
         
@@ -285,12 +293,12 @@ export function CommandPalette() {
                 }}
               />
               <kbd
-                className="text-[10px] px-1.5 py-0.5 rounded shrink-0"
+                className="text-[10.5px] font-mono px-2 py-0.5 rounded-md shrink-0 uppercase tracking-wider font-bold shadow-sm"
                 style={{
-                  fontFamily: "var(--vlc-font-mono)",
-                  color: "var(--vlc-text-ghost)",
-                  background: "var(--vlc-bg-sunken)",
-                  border: "1px solid var(--vlc-border-subtle)",
+                  color: "var(--vlc-text-secondary)",
+                  background: "var(--vlc-bg-elevated)",
+                  border: "1px solid var(--vlc-border-normal)",
+                  boxShadow: "0 2px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)",
                 }}
               >
                 esc

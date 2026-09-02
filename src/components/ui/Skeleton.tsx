@@ -1,13 +1,12 @@
-import { motion } from "framer-motion";
+/**
+ * Skeleton loading components — pure CSS, no framer-motion.
+ * Uses existing CSS keyframes (vlc-rise, vlc-shimmer) for animations.
+ */
 
 export function PanelSkeleton({ width = 360 }: { width?: number }) {
   return (
-    <motion.div
-      className="fixed z-[60] glass-panel flex flex-col overflow-hidden"
-      initial={{ opacity: 0, y: 12, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 8, scale: 0.96 }}
-      transition={{ type: "spring", damping: 26, stiffness: 340, mass: 0.8 }}
+    <div
+      className="vlc-rise fixed z-[60] glass-panel flex flex-col overflow-hidden"
       style={{
         left: typeof window !== "undefined" ? Math.max(16, window.innerWidth - width - 32) : 16,
         top: 80,
@@ -27,23 +26,18 @@ export function PanelSkeleton({ width = 360 }: { width?: number }) {
         <SkeletonBlock width="90%" height={12} />
         <SkeletonBlock width="95%" height={12} />
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export function DialogSkeleton({ width = 480 }: { width?: number }) {
   return (
-    <motion.div
+    <div
       className="fixed inset-0 z-[60] flex items-center justify-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      style={{ background: "color-mix(in oklab, black 55%, transparent)", backdropFilter: "blur(6px)" }}
+      style={{ background: "color-mix(in oklab, black 55%, transparent)", backdropFilter: "blur(6px)", animation: "vlc-fade-in 200ms ease both" }}
     >
-      <motion.div
-        className="glass-panel flex flex-col overflow-hidden"
-        initial={{ opacity: 0, y: 16, scale: 0.96 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ type: "spring", damping: 26, stiffness: 340, mass: 0.8 }}
+      <div
+        className="vlc-rise glass-panel flex flex-col overflow-hidden"
         style={{
           width, maxWidth: "92vw", height: 280,
           borderRadius: "var(--vlc-radius-lg, 14px)",
@@ -60,8 +54,8 @@ export function DialogSkeleton({ width = 480 }: { width?: number }) {
           <SkeletonBlock width="100%" height={12} />
           <SkeletonBlock width="90%" height={12} />
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 

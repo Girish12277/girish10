@@ -177,10 +177,10 @@ export function ControlBar() {
         {v("ctrl.playPause") && (
           <Btn large primary onClick={togglePlay} title={playing ? "Pause (Space)" : "Play (Space)"}>
             <div style={{ display: "grid", placeItems: "center", width: 22, height: 22 }}>
-              <div style={{ gridArea: "1/1", opacity: playing ? 0 : 1, transform: playing ? "scale(0.5) rotate(-90deg)" : "scale(1) rotate(0)", transition: "all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
+              <div style={{ gridArea: "1/1", opacity: playing ? 0 : 1, transform: playing ? "scale(0.5) rotate(-90deg)" : "scale(1) rotate(0)", transition: "all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)", willChange: "transform, opacity" }}>
                 <Play size={22} fill="currentColor" style={{ marginLeft: 2 }} />
               </div>
-              <div style={{ gridArea: "1/1", opacity: playing ? 1 : 0, transform: playing ? "scale(1) rotate(0)" : "scale(0.5) rotate(90deg)", transition: "all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
+              <div style={{ gridArea: "1/1", opacity: playing ? 1 : 0, transform: playing ? "scale(1) rotate(0)" : "scale(0.5) rotate(90deg)", transition: "all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)", willChange: "transform, opacity" }}>
                 <Pause size={22} fill="currentColor" />
               </div>
             </div>
@@ -331,10 +331,10 @@ export function ControlBar() {
         {v("ctrl.fullscreen") && (
           <Btn onClick={() => window.dispatchEvent(new CustomEvent("vlc-toggle-fullscreen"))} title="Fullscreen (F)">
             <div style={{ display: "grid", placeItems: "center", width: 17, height: 17 }}>
-              <div style={{ gridArea: "1/1", opacity: fullscreen ? 0 : 1, transform: fullscreen ? "scale(0.5)" : "scale(1)", transition: "all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
+              <div style={{ gridArea: "1/1", opacity: fullscreen ? 0 : 1, transform: fullscreen ? "scale(0.5)" : "scale(1)", transition: "all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)", willChange: "transform, opacity" }}>
                 <Maximize size={17} />
               </div>
-              <div style={{ gridArea: "1/1", opacity: fullscreen ? 1 : 0, transform: fullscreen ? "scale(1)" : "scale(0.5)", transition: "all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
+              <div style={{ gridArea: "1/1", opacity: fullscreen ? 1 : 0, transform: fullscreen ? "scale(1)" : "scale(0.5)", transition: "all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)", willChange: "transform, opacity" }}>
                 <Minimize size={17} />
               </div>
             </div>

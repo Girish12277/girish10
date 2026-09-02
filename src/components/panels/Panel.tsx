@@ -123,7 +123,7 @@ export function Panel({
           left: pos.x, top: pos.y, width,
           maxHeight: "85vh",
           borderRadius: "var(--vlc-radius-lg, 12px)",
-          boxShadow: "var(--vlc-shadow-popup)",
+          boxShadow: "0 24px 64px -12px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255, 255, 255, 0.14)",
           border: "1px solid var(--vlc-border-normal)",
         }}
       >

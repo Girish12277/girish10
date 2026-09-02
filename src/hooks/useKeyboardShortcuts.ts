@@ -10,10 +10,20 @@ const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(mi
 export function useKeyboardShortcuts() {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      // 1. If child component/game already handled event, do not bleed through to player
+      if (e.defaultPrevented) return;
+
       const target = e.target as HTMLElement | null;
       if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)) return;
       const v = videoRef.current;
       const s = usePlayerStore.getState();
+      const studyHubOpen = useStudyStore.getState().hubOpen;
+
+      // 2. Suppress media player single-key shortcuts when any game, mini-app, study hub, or dialog is active
+      const hasActiveOverlay = Boolean(
+        s.openFeatureId || studyHubOpen || s.commandPaletteOpen || s.preferencesOpen ||
+        s.networkOpen || s.jumpOpen || s.helpOpen || target?.closest("[data-vlc-region='panel']") || target?.closest("[role='dialog']")
+      );
 
       const seek = (delta: number) => {
         if (!v) return;
@@ -62,8 +72,10 @@ export function useKeyboardShortcuts() {
       if (alt && code === "ArrowRight") { e.preventDefault(); seek(300); return; }
       if (alt && code === "ArrowLeft") { e.preventDefault(); seek(-300); return; }
       if (ctrl && code === "ArrowUp") { e.preventDefault(); setVol(0.05); return; }
-      if (ctrl && code === "ArrowDown") { e.preventDefault(); setVol(-0.05); return; }
       if (ctrl) return;
+
+      // 3. If any game or overlay modal is active, suppress single-key / arrow media player shortcuts
+      if (hasActiveOverlay) return;
 
       // Shift modifiers (VLC short seek + frame back)
       if (shift && code === "ArrowRight") { e.preventDefault(); seek(3); return; }

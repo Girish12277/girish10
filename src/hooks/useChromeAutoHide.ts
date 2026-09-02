@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
 import { usePlayerStore } from "@/store/playerStore";
+import { useShallow } from "zustand/react/shallow";
 
 /**
  * YouTube/VLC-style auto-hide controller for the top/bottom chrome.
@@ -14,20 +15,28 @@ import { usePlayerStore } from "@/store/playerStore";
  *  - Silent seek commands are the exception: 10s jumps keep chrome hidden.
  */
 export function useChromeAutoHide(enabled: boolean) {
-  const playing = usePlayerStore((s) => s.playing);
-  const buffering = usePlayerStore((s) => s.buffering);
+  // Single consolidated selector — shallow-compared, fires only when a value changes.
+  const {
+    playing, buffering, interacting,
+    preferencesOpen, commandPaletteOpen, contextOpen,
+    networkOpen, jumpOpen, helpOpen,
+    playlistOpen, effectsOpen, codecOpen, openFeatureId,
+  } = usePlayerStore(useShallow((s) => ({
+    playing: s.playing,
+    buffering: s.buffering,
+    interacting: s.interacting,
+    preferencesOpen: s.preferencesOpen,
+    commandPaletteOpen: s.commandPaletteOpen,
+    contextOpen: s.contextMenu.open,
+    networkOpen: s.networkOpen,
+    jumpOpen: s.jumpOpen,
+    helpOpen: s.helpOpen,
+    playlistOpen: s.playlistOpen,
+    effectsOpen: s.effectsOpen,
+    codecOpen: s.codecOpen,
+    openFeatureId: s.openFeatureId,
+  })));
   const [silentSeekActive, setSilentSeekActive] = useState(false);
-  const interacting = usePlayerStore((s) => s.interacting);
-  const preferencesOpen = usePlayerStore((s) => s.preferencesOpen);
-  const commandPaletteOpen = usePlayerStore((s) => s.commandPaletteOpen);
-  const contextOpen = usePlayerStore((s) => s.contextMenu.open);
-  const networkOpen = usePlayerStore((s) => s.networkOpen);
-  const jumpOpen = usePlayerStore((s) => s.jumpOpen);
-  const helpOpen = usePlayerStore((s) => s.helpOpen);
-  const playlistOpen = usePlayerStore((s) => s.playlistOpen);
-  const effectsOpen = usePlayerStore((s) => s.effectsOpen);
-  const codecOpen = usePlayerStore((s) => s.codecOpen);
-  const openFeatureId = usePlayerStore((s) => s.openFeatureId);
 
   const forceVisible =
     !playing || (buffering && !silentSeekActive) || interacting ||
