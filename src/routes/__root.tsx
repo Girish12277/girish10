@@ -147,7 +147,13 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
+  let queryClient: QueryClient;
+  try {
+    const ctx = Route.useRouteContext();
+    queryClient = ctx?.queryClient ?? new QueryClient();
+  } catch {
+    queryClient = new QueryClient();
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -162,7 +168,6 @@ function RootComponent() {
     import("@/utils/vitals").then((v) => { if (!cancelled) v.startVitals(); }).catch(() => undefined);
     return () => { cancelled = true; };
   }, []);
-
 
   return (
     <QueryClientProvider client={queryClient}>

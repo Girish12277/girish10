@@ -76,7 +76,7 @@ const { count, size, warnings } = await generateSW({
   maximumFileSizeToCacheInBytes: 12 * 1024 * 1024,
   navigateFallback: "/index.html",
   navigateFallbackDenylist: [/^\/~oauth/, /^\/api\//, /^\/_/],
-  ignoreURLParametersMatching: [/^source$/, /^open$/, /^shortcut$/, /^utm_/, /^fbclid$/],
+  ignoreURLParametersMatching: [/^source$/, /^open$/, /^shortcut$/, /^stream$/, /^shared$/, /^utm_/, /^fbclid$/],
   navigationPreload: false,
   cleanupOutdatedCaches: true,
   clientsClaim: true,
