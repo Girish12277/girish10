@@ -2,7 +2,7 @@
 // Workbox Service Worker Generator for 100% Offline PWA Reliability.
 // Emits a hardened sw.js precaching all static assets, JS chunks, CSS, HTML, and vendor files.
 import { generateSW } from "workbox-build";
-import { existsSync, cpSync, rmSync } from "node:fs";
+import { existsSync, cpSync } from "node:fs";
 import { resolve } from "node:path";
 
 const outDir = resolve("dist/client");
@@ -30,18 +30,7 @@ const { count, size, warnings } = await generateSW({
   sourcemap: false,
   mode: "production",
   runtimeCaching: [
-    // 1. App Shell HTML — NetworkFirst with 3s timeout, cached fallback offline
-    {
-      urlPattern: ({ request, sameOrigin }) => sameOrigin && request.mode === "navigate",
-      handler: "NetworkFirst",
-      options: {
-        cacheName: "app-shell-v2",
-        networkTimeoutSeconds: 3,
-        expiration: { maxEntries: 32, maxAgeSeconds: 60 * 60 * 24 * 30 },
-      },
-    },
-
-    // 2. Vendored Offline Tools (TCS iON Calculator, etc.) — CacheFirst
+    // 1. Vendored Offline Tools (TCS iON Calculator, etc.) — CacheFirst
     {
       urlPattern: ({ url, sameOrigin }) => sameOrigin && url.pathname.startsWith("/vendor/"),
       handler: "CacheFirst",
@@ -52,7 +41,7 @@ const { count, size, warnings } = await generateSW({
       },
     },
 
-    // 3. Static App Bundle Assets (JS, CSS) — CacheFirst with long maxAge
+    // 2. Static App Bundle Assets (JS, CSS) — StaleWhileRevalidate
     {
       urlPattern: ({ request, sameOrigin }) =>
         sameOrigin && (request.destination === "script" || request.destination === "style"),
@@ -63,14 +52,14 @@ const { count, size, warnings } = await generateSW({
       },
     },
 
-    // 4. Google Fonts CSS — StaleWhileRevalidate
+    // 3. Google Fonts CSS — StaleWhileRevalidate
     {
       urlPattern: ({ url }) => url.origin === "https://fonts.googleapis.com",
       handler: "StaleWhileRevalidate",
       options: { cacheName: "fonts-css-v2" },
     },
 
-    // 5. Google Fonts Files — CacheFirst
+    // 4. Google Fonts Files — CacheFirst
     {
       urlPattern: ({ url }) => url.origin === "https://fonts.gstatic.com",
       handler: "CacheFirst",
@@ -81,7 +70,7 @@ const { count, size, warnings } = await generateSW({
       },
     },
 
-    // 6. Static Images & Icons — CacheFirst
+    // 5. Static Images & Icons — CacheFirst
     {
       urlPattern: ({ request, url, sameOrigin }) =>
         sameOrigin && (request.destination === "image" || /\.(png|jpg|jpeg|gif|svg|webp|ico)$/.test(url.pathname)),
