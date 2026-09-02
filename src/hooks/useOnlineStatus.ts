@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 
 export function useOnlineStatus() {
-  const [isOnline, setIsOnline] = useState<boolean>(() =>
-    typeof navigator === "undefined" ? true : navigator.onLine
-  );
+  // Always default to true during SSR to prevent pre-rendering offline banners
+  const [isOnline, setIsOnline] = useState<boolean>(true);
 
   useEffect(() => {
+    // Sync with actual client navigator status after mount
+    if (typeof navigator !== "undefined") {
+      setIsOnline(navigator.onLine);
+    }
+
     const handleOnline = () => setIsOnline(true);
     const handleOffline = () => setIsOnline(false);
 
