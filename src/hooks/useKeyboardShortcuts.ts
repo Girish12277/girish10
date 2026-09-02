@@ -10,19 +10,18 @@ const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(mi
 export function useKeyboardShortcuts() {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      // 1. If child component/game already handled event, do not bleed through to player
-      if (e.defaultPrevented) return;
-
       const target = e.target as HTMLElement | null;
+      // Do not handle media shortcuts when actively typing inside text fields
       if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)) return;
+
       const v = videoRef.current;
       const s = usePlayerStore.getState();
       const studyHubOpen = useStudyStore.getState().hubOpen;
 
-      // 2. Suppress media player single-key shortcuts when any game, mini-app, study hub, or dialog is active
+      // Suppress media player single-key shortcuts when any game, mini-app, study hub, or dialog is active
       const hasActiveOverlay = Boolean(
         s.openFeatureId || studyHubOpen || s.commandPaletteOpen || s.preferencesOpen ||
-        s.networkOpen || s.jumpOpen || s.helpOpen || target?.closest("[data-vlc-region='panel']") || target?.closest("[role='dialog']")
+        s.networkOpen || s.jumpOpen || s.helpOpen || target?.closest("[role='dialog']")
       );
 
       const seek = (delta: number) => {
@@ -74,7 +73,7 @@ export function useKeyboardShortcuts() {
       if (ctrl && code === "ArrowUp") { e.preventDefault(); setVol(0.05); return; }
       if (ctrl) return;
 
-      // 3. If any game or overlay modal is active, suppress single-key / arrow media player shortcuts
+      // Suppress single-key shortcuts when overlay modals are open
       if (hasActiveOverlay) return;
 
       // Shift modifiers (VLC short seek + frame back)
@@ -86,7 +85,6 @@ export function useKeyboardShortcuts() {
         case "Space": e.preventDefault(); if (v) (v.paused ? v.play() : v.pause())?.catch?.(() => undefined); break;
         case "Backspace": if (v) { v.currentTime = 0; v.play().catch(() => undefined); s.pushOSD("Restart"); } break;
         case "KeyI": {
-          // Picture-in-Picture toggle
           const vv = v as (HTMLVideoElement & { requestPictureInPicture?: () => Promise<PictureInPictureWindow> }) | null;
           if (!vv) break;
           if (document.pictureInPictureElement) document.exitPictureInPicture?.().catch(() => undefined);
@@ -131,7 +129,8 @@ export function useKeyboardShortcuts() {
         s.pushOSD(`Seek ${n * 10}%`);
       }
     };
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
+
+    window.addEventListener("keydown", handler, { capture: true });
+    return () => window.removeEventListener("keydown", handler, { capture: true });
   }, []);
 }

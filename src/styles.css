@@ -213,6 +213,29 @@
   --vlc-focus-ring: 0 0 0 2px var(--vlc-bg-base), 0 0 0 4px var(--vlc-border-focus);
 }
 
+/* ------------------------------------------------------------------
+ * Focus outline override — eliminates browser-native cyan focus rings
+ * on video player seekbar, buttons, sliders, and regions when using arrow keys.
+ * ------------------------------------------------------------------ */
+[data-vlc-region],
+[data-vlc-region="seek"],
+[data-vlc-region="control"],
+[data-vlc-region="title"],
+[data-vlc-region="menu"],
+.vlc-ctrl-btn,
+button:focus,
+button:focus-visible,
+div:focus,
+div:focus-visible,
+input[type="range"]:focus,
+input[type="range"]:focus-visible,
+[role="slider"]:focus,
+[role="slider"]:focus-visible {
+  outline: none !important;
+  outline-style: none !important;
+  box-shadow: none !important;
+}
+
 /* Density modes — applied via [data-density="compact|cozy|comfortable"] */
 :root[data-density="compact"] {
   --vlc-text-sm: 11px;
