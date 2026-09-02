@@ -4,6 +4,7 @@
   "exclude": [
     "/sw.js",
     "/workbox-*.js",
+    "/index.html",
     "/manifest.webmanifest",
     "/favicon.ico",
     "/robots.txt",
